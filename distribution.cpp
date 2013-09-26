@@ -65,7 +65,7 @@ std::ofstream foutD;
 std::string one_region;
 
 void DisUsage(void) {
-    std::cerr<<"\nUsage:  plolyscape dis [options] \n\n"
+    std::cerr<<"\nUsage:  msisensor msi [options] \n\n"
         <<"       -d   <string>   homopolymer and microsates file\n"
         <<"       -n   <string>   normal bam file\n"
         <<"       -t   <string>   tumor  bam file\n"

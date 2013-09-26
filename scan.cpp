@@ -52,7 +52,7 @@ std::ifstream fin_d;
 std::ofstream fout;
 
 void ScanUsage(void) {
-    std::cerr<<"\nUsage:  plolyscape scan [options] \n\n"
+    std::cerr<<"\nUsage:  msisensor scan [options] \n\n"
         <<"       -d   <string>   reference genome sequences file, *.fasta format\n"
         <<"       -o   <string>   output homopolymer and microsatelittes file\n\n"
         <<"       -l   <int>      minimal homopolymer size, default="<<param.MininalHomoSize<<"\n"
