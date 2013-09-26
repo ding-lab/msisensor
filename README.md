@@ -90,47 +90,47 @@ Output
 -------
 There will be one microsatellite list output in "scan" step. 
 Msi scorring step will give 4 output files based on given output prefix:
-    output.prefix
-    output.prefix_dis
-    output.prefix_germline
-    output.prefix_somatic
+        output.prefix
+        output.prefix_dis
+        output.prefix_germline
+        output.prefix_somatic
 
 1. microsatellites.list: microsatellite list output 
 
-    chromosome      location        site_length     site_content    repeat_times    front_flank     tail_flank      site_bases      front_flank_bases       tail_flank_bases
-    1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
-    1       10629   2       9       3       258     409     GC      CAAAG   CGCGC
-    1       10652   2       2       3       665     614     AG      GGCGC   GCGCG
-    1       10658   2       9       3       546     409     GC      GAGAG   CGCGC
-    1       10681   2       2       3       665     614     AG      GGCGC   GCGCG
+        chromosome      location        site_length     site_content    repeat_times    front_flank     tail_flank      site_bases      front_flank_bases       tail_flank_bases
+        1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
+        1       10629   2       9       3       258     409     GC      CAAAG   CGCGC
+        1       10652   2       2       3       665     614     AG      GGCGC   GCGCG
+        1       10658   2       9       3       546     409     GC      GAGAG   CGCGC
+        1       10681   2       2       3       665     614     AG      GGCGC   GCGCG
 
 2. output.prefix: msi score output
 
-    Total_Number_of_Sites   Number_of_Somatic_Sites %
-    640     75      11.72
+        Total_Number_of_Sites   Number_of_Somatic_Sites %
+        640     75      11.72
 
 3. output.prefix_dis: read count distribution (N: normal; T: tumor)
 
-    1 10529896 CTTTC 15[T] GAGAC
-    N: 0 0 0 0 0 0 0 1 0 0 8 9 1 7 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-    T: 0 0 0 0 0 0 0 0 0 1 19 14 17 9 32 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+        1 10529896 CTTTC 15[T] GAGAC
+        N: 0 0 0 0 0 0 0 1 0 0 8 9 1 7 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+        T: 0 0 0 0 0 0 0 0 0 1 19 14 17 9 32 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 
 4. output.prefix_somatic: somatic sites detected
   
-    chromosome   location        front_flank     repeat_times    site_content    tail_flank      difference      P_value
-    1       10357206        TTGAA   17      T       ACTTC   0.45670 0.00014
-    1       11140610        TCTGG   11      A       CACAC   0.80855 0.00000
-    1       11156045        ACATC   15      T       GAGAC   0.75281 0.00001
-    1       12368705        GAGTG   15      T       GAGAT   0.51139 0.00000
-    1       16200729        TAAGA   10      T       CTTGT   0.55652 0.00000
-    1       16245610        AAGGG   10      T       GCATA   0.75928 0.00000
+        chromosome   location        front_flank     repeat_times    site_content    tail_flank      difference      P_value
+        1       10357206        TTGAA   17      T       ACTTC   0.45670 0.00014
+        1       11140610        TCTGG   11      A       CACAC   0.80855 0.00000
+        1       11156045        ACATC   15      T       GAGAC   0.75281 0.00001
+        1       12368705        GAGTG   15      T       GAGAT   0.51139 0.00000
+        1       16200729        TAAGA   10      T       CTTGT   0.55652 0.00000
+        1       16245610        AAGGG   10      T       GCATA   0.75928 0.00000
 
 5. output.prefix_germline: germline sites detected
     
-    chromosome   location        front_flank     repeat_times    site_content    tail_flank      xxx|xxxx
-    1       1192105 AATAC   11      A       TTAGC   5|5
-    1       1330899 CTGCC   5       AG      CACAG   5|5
-    1       1598690 AATAC   12      A       TTAGC   5|5
-    1       1605407 AAAAG   14      A       GAAAA   1|1
-    1       2118724 TTTTC   11      T       CTTTT   1|1
+        chromosome   location        front_flank     repeat_times    site_content    tail_flank      xxx|xxxx
+        1       1192105 AATAC   11      A       TTAGC   5|5
+        1       1330899 CTGCC   5       AG      CACAG   5|5
+        1       1598690 AATAC   12      A       TTAGC   5|5
+        1       1605407 AAAAG   14      A       GAAAA   1|1
+        1       2118724 TTTTC   11      T       CTTTT   1|1
 
