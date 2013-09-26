@@ -66,7 +66,7 @@ Clone the samtools and msisensor repos, and build the `msisensor` binary:
 
     git clone https://github.com/samtools/samtools.git
     export SAMTOOLS_ROOT=$PWD/samtools
-    git clone https://github.com/Beifang/msisensor.git
+    git clone https://github.com/ding-lab/msisensor.git
     cd msisensor
     make
 
