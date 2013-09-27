@@ -72,6 +72,7 @@ void DisUsage(void) {
         <<"       -o   <string>   output distribution file\n\n"
 
         <<"       -e   <string>   bed file\n"
+        <<"       -f   <double>   FDR threshold for somatic sites detection, default="<<paramd.fdrThreshold<<"\n"
         <<"       -r   <string>   choose one region, format: 1:10000000-20000000\n"    
         <<"       -l   <int>      mininal homopolymer size, default="<<paramd.MininalHomoSize<<"\n"
         <<"       -p   <int>      mininal homopolymer size for distribution analysis, default="<<paramd.MininalHomoForDis<<"\n"
@@ -102,6 +103,7 @@ int dGetOptions(int rgc, char *rgv[]) {
             case 'o': disFile  = rgv[++i]; break;
             case 'e': bedFile  = rgv[++i]; break;
             case 'r': one_region = rgv[++i]; break;
+            case 'f': paramd.fdrThreshold  = atof(rgv[++i]); break;
             case 'l': paramd.MininalHomoSize = atoi(rgv[++i]); break;
             case 'p': paramd.MininalHomoForDis = atoi(rgv[++i]); break;
             case 'u': paramd.DisSpan = atoi(rgv[++i]); break;
@@ -127,7 +129,7 @@ int HomoAndMicrosateDisMsi(int argc, char *argv[]) {
     }
     Initial_Time();
     std::cout <<"Start at:  "<<Curr_Time() << std::endl;
-    disFile = "output";    
+
     int noptions = dGetOptions(argc, argv);
     // process user defined region
     if (!one_region.empty()) {  

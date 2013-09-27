@@ -101,6 +101,7 @@ Param::Param()
     , HomoCoverage(40)
     , windowSize(500000) // window size (default 50k)
     , covCutoff( 20 )
+    , fdrThreshold( 0.05 ) 
 {
     inital_homo_phabet();
     initalphabet();

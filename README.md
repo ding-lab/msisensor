@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor, a c++ program for automatically detecting somatic microsatellite changes. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+MSIsensor is a c++ program for automatically detecting somatic microsatellite changes. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
 
 Usage
 -----

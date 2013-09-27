@@ -1,10 +1,11 @@
 /*
+ *
  * Calculate the Chi-Squared P-Value
- * The core code was from:
+ * The functions: approx_gamma, igf and chisqr were from:
  * http://www.codeproject.com/Articles/432194/How-to-Calculate-the-Chi-Squared-P-Value
  * under the permission:
  * http://creativecommons.org/licenses/publicdomain
- * we made some necessary modifications and added X2BetweenTwo function
+ *
  *
  */
 

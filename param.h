@@ -85,7 +85,8 @@ public:
     unsigned int windowSize;
 
     // genotyping 
-    unsigned int covCutoff; 
+    unsigned int covCutoff;
+    double fdrThreshold;
 
 };
 
