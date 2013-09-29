@@ -35,6 +35,7 @@ msisensor msi [options]:
        -o   <string>   output distribution file
 
        -e   <string>   bed file
+       -f   <double>   FDR threshold for somatic sites detection, default=0.05 
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      mininal homopolymer size, default=5
        -p   <int>      mininal homopolymer size for distribution analysis, default=10
