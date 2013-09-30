@@ -16,33 +16,33 @@ Key commands:
 msisensor scan [options]:
        
        -d   <string>   reference genome sequences file, *.fasta format
-       -o   <string>   output homopolymer and microsatelittes file
+       -o   <string>   output homopolymer and microsatelites file
 
        -l   <int>      minimal homopolymer size, default=5
        -c   <int>      context length, default=5
        -m   <int>      maximal homopolymer size, default=50
-       -s   <int>      maximal length of microsate, default=5
-       -r   <int>      minimal repeat times of microsate, default=3
+       -s   <int>      maximal length of microsatellite, default=5
+       -r   <int>      minimal repeat times of microsatellite, default=3
        -p   <int>      output homopolymer only, 0: no; 1: yes, default=0
        
        -h   help
  
 msisensor msi [options]:
 
-       -d   <string>   homopolymer and microsates file
+       -d   <string>   homopolymer and microsatellites file
        -n   <string>   normal bam file
        -t   <string>   tumor  bam file
        -o   <string>   output distribution file
 
-       -e   <string>   bed file
+       -e   <string>   bed file, to select a few resions
        -f   <double>   FDR threshold for somatic sites detection, default=0.05 
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      mininal homopolymer size, default=5
        -p   <int>      mininal homopolymer size for distribution analysis, default=10
        -m   <int>      maximal homopolymer size for distribution analysis, default=50
-       -q   <int>      mininal microsates size, default=3
-       -s   <int>      mininal microsates size for distribution analysis, default=5
-       -w   <int>      maximal microstaes size for distribution analysis, default=40
+       -q   <int>      mininal microsatellites size, default=3
+       -s   <int>      mininal number of repeats in microsatellites for distribution analysis, default=5
+       -w   <int>      maximal microsatellites size for distribution analysis, default=40
        -u   <int>      span size around window for extracting reads, default=500
        -b   <int>      threads number for parallel computing, default=1
        -x   <int>      output homopolymer only, 0: no; 1: yes, default=0
