@@ -39,7 +39,10 @@ SomaticSite::SomaticSite()
     , fbases("")
     , ebases("")
     , diff( 0.0 )
-    , pValue( 0.0 )
+    , pValue( 1.0 )
+    , somatic( false )
+    , FDR( 1.0 )
+    , rank( 1 )
 {
     //xxxxxxxx
 };
@@ -47,5 +50,19 @@ SomaticSite::SomaticSite()
 
 SomaticSite::~SomaticSite() {
     // xxxxx
+};
+
+// PourOut values
+void SomaticSite::PourOut() {
+    std::cerr << chr << "\t"
+              << location << "\t"
+              << bases << "\t"
+              << length << "\t"
+              << fbases << "\t"
+              << bases << "\t"
+              << ebases << "\t"
+              << diff << "\t"
+              << pValue << "\n";
+
 };
 

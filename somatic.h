@@ -63,6 +63,15 @@ public:
     // normal and tumor 
     double diff;
     double pValue;
+    double FDR;
+    unsigned short rank;
+    bool somatic;
+    
+    // output content
+    void PourOut(); 
+    // sorting based on p-value
+    // 
+    bool operator < (const SomaticSite& rhs) const { return pValue < rhs.pValue; }
 
     protected:
         // xxx

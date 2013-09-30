@@ -30,6 +30,9 @@
 #include <omp.h>
 
 #include "sample.h"
+#include "param.h"
+
+extern Param paramd;
 
 Sample::Sample()
     : outputPrefix( "test" )
@@ -87,4 +90,39 @@ void Sample::closeOutStream() {
     outputGermline.close();
     outputDistribution.close();
 }
+
+// FDR determination
+void Sample::calculateFDR() {
+    // sorting by p_value
+    sort( totalSomaticSites.begin(), totalSomaticSites.end() );
+    unsigned short rank = 1;
+    // FDR calculation
+    for ( std::vector< SomaticSite >::iterator _it = totalSomaticSites.begin(); _it != totalSomaticSites.end(); ++_it ) {
+        //_it->PourOut();
+        _it->FDR = _it->pValue * numberOfDataPoints / rank ;
+        if ( _it->FDR > paramd.fdrThreshold ) break;
+        _it->rank = rank;
+        _it->somatic = true;
+        numberOfMsiDataPoints++;
+        rank++;
+    }
+}
+
+// report somatics && FDR
+void Sample::pourOutSomaticFDR() {
+    for ( std::vector< SomaticSite >::iterator _it = totalSomaticSites.begin(); _it != totalSomaticSites.end(); ++_it ) {
+        if ( ! _it->somatic ) break;
+        outputSomatic << _it->chr << "\t"
+                      << _it->location << "\t"
+                      << _it->fbases << "\t"
+                      << _it->length << "\t"
+                      << _it->bases << "\t"
+                      << _it->ebases << "\t"
+                      << _it->diff << "\t"
+                      << _it->pValue << "\t"
+                      << _it->FDR << "\t"
+                      << _it->rank << "\n";
+    }
+}
+
 

@@ -118,13 +118,16 @@ Msi scorring step will give 4 output files based on given output prefix:
 
 4. output.prefix_somatic: somatic sites detected
   
-        chromosome   location        front_flank     repeat_times    site_content    tail_flank      difference      P_value
-        1       10357206        TTGAA   17      T       ACTTC   0.45670 0.00014
-        1       11140610        TCTGG   11      A       CACAC   0.80855 0.00000
-        1       11156045        ACATC   15      T       GAGAC   0.75281 0.00001
-        1       12368705        GAGTG   15      T       GAGAT   0.51139 0.00000
-        1       16200729        TAAGA   10      T       CTTGT   0.55652 0.00000
-        1       16245610        AAGGG   10      T       GCATA   0.75928 0.00000
+        chromosome   location        front_flank     repeat_times    site_content    tail_flank      difference      P_value    FDR     rank
+        1       16200729        TAAGA   10      T       CTTGT   0.55652 2.8973e-15      1.8542e-12      1
+        1       75614380        TTTAC   14      T       AAGGT   0.82764 5.1515e-15      1.6485e-12      2
+        1       70654981        CCAGG   21      A       GATGA   0.80556 1e-14   2.1333e-12      3
+        1       65138787        GTTTG   13      A       CAGCT   0.8653  1e-14   1.6e-12 4
+        1       35885046        TTCTC   11      T       CCCCT   0.84682 1e-14   1.28e-12        5
+        1       75172756        GTGGT   14      A       GAAAA   0.57471 1e-14   1.0667e-12      6
+        1       76257074        TGGAA   14      T       GAGTC   0.66023 1e-14   9.1429e-13      7
+        1       33087567        TAGAG   16      A       GGAAA   0.53141 1e-14   8e-13   8
+        1       41456808        CTAAC   14      T       CTTTT   0.76286 1e-14   7.1111e-13      9
 
 5. output.prefix_germline: germline sites detected
     

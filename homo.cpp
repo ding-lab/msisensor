@@ -29,8 +29,10 @@
 #include <bitset>
 #include <omp.h>
 #include <cmath>
+
 #include "homo.h"
 #include "polyscan.h"
+#include "somatic.h"
 
 extern Param param;
 extern Param paramd;
@@ -187,8 +189,12 @@ void HomoSite::DisGenotyping(Sample &sample) {
        withSufCov = true;
        dif = DistanceBetweenTwo( normalDis[0], tumorDis[0] );
        pValue = X2BetweenTwo( normalDis[0], tumorDis[0], param.s_dispots );
-       if (pValue < 0.001) somatic = true;
+       // if (pValue < 0.001) somatic = true;
+       // add one for FDR
+       somatic = true;
+
     } else {
+
         withSufCov = false;
         dif = -1.0;
         pValue = 1;
@@ -200,13 +206,14 @@ void HomoSite::DisGenotyping(Sample &sample) {
     if ( withSufCov  ) {
         sample.numberOfDataPoints++;
         sample.outputPSomatic << log10( pValue ) << std::endl;
-        if ( somatic ) sample.numberOfMsiDataPoints++;
+        //if ( somatic ) sample.numberOfMsiDataPoints++;
     }
 
     if ( withGenotype ) reportGermline = true;
     if ( somatic ) reportSomatic = true;
 
     if ( reportSomatic ) {
+        /*
         sample.outputSomatic << chr << "\t" 
                              << location << "\t" 
                              << fbases << "\t" 
@@ -215,6 +222,20 @@ void HomoSite::DisGenotyping(Sample &sample) {
                              << ebases;
         sample.outputSomatic << "\t" << std::fixed << dif << "\t"<< std::fixed << pValue;
         sample.outputSomatic << std::endl;
+        */
+        // record for FDR analysis 
+        // instead of report it directly
+        SomaticSite onessite;
+        onessite.chr = chr;
+        onessite.location = location;
+        onessite.length = length;
+        onessite.fbases = fbases;
+        onessite.ebases = ebases;
+        onessite.bases = bases;
+        onessite.diff = dif;
+        onessite.pValue = pValue;
+
+        sample.totalSomaticSites.push_back( onessite );
     }
 
     if ( reportGermline ) {

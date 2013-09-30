@@ -35,6 +35,8 @@
 #include <fstream>
 #include <algorithm>
 
+#include "somatic.h"
+
 // sample
 class Sample {
 public:
@@ -56,10 +58,15 @@ public:
 
     unsigned numberOfDataPoints; 
     unsigned numberOfMsiDataPoints;
+    
+    // container for FDR
+    std::vector< SomaticSite > totalSomaticSites;
 
     void iniOutput( const std::string &gavePrefix );
     void pourOutMsiScore();
     void closeOutStream();
+    void calculateFDR();
+    void pourOutSomaticFDR();
 
     protected:
         // xxx

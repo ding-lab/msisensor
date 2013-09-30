@@ -373,7 +373,12 @@ void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix
         readsInWindow.clear();
         std::cout<<"window: "<<i<<" done...\n";
     }
+    // FDR
+    oneSample.calculateFDR();
+    oneSample.pourOutSomaticFDR();
+    // MSI score
     oneSample.pourOutMsiScore();
     oneSample.closeOutStream();
+
 }
 
