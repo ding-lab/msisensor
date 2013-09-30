@@ -46,7 +46,7 @@ public:
     std::string outputPrefix;
 
     std::ofstream output;
-    std::ofstream outputPSomatic;
+    //std::ofstream outputPSomatic;
     std::ofstream outputSomatic;
     std::ofstream outputGermline;
     std::ofstream outputDistribution;
@@ -58,7 +58,8 @@ public:
 
     unsigned numberOfDataPoints; 
     unsigned numberOfMsiDataPoints;
-    
+    unsigned numberOftotalSites;
+
     // container for FDR
     std::vector< SomaticSite > totalSomaticSites;
 
@@ -67,6 +68,7 @@ public:
     void closeOutStream();
     void calculateFDR();
     void pourOutSomaticFDR();
+    void VerboseInfo();
 
     protected:
         // xxx

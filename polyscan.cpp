@@ -379,6 +379,7 @@ void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix
     // MSI score
     oneSample.pourOutMsiScore();
     oneSample.closeOutStream();
+    oneSample.VerboseInfo();
 
 }
 

@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a c++ program for automatically detecting somatic microsatellite changes. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+MSIsensor is a c++ program for automatically detecting somatic and germline variants at microsatellite regions. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
 
 Usage
 -----
@@ -96,9 +96,9 @@ Msi scorring step will give 4 output files based on given output prefix:
         output.prefix_germline
         output.prefix_somatic
 
-1. microsatellites.list: microsatellite list output 
+1. microsatellites.list: microsatellite list output
 
-        chromosome      location        site_length     site_content    repeat_times    front_flank     tail_flank      site_bases      front_flank_bases       tail_flank_bases
+        chromosome      location        site_length     site_content_binary    repeat_times    left_flank_binary     right_flank_binary      site_bases      left_flank_bases       right_flank_bases
         1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
         1       10629   2       9       3       258     409     GC      CAAAG   CGCGC
         1       10652   2       2       3       665     614     AG      GGCGC   GCGCG
@@ -118,7 +118,7 @@ Msi scorring step will give 4 output files based on given output prefix:
 
 4. output.prefix_somatic: somatic sites detected
   
-        chromosome   location        front_flank     repeat_times    site_content    tail_flank      difference      P_value    FDR     rank
+        chromosome   location        left_flank     repeat_times    site_content    right_flank      difference      P_value    FDR     rank
         1       16200729        TAAGA   10      T       CTTGT   0.55652 2.8973e-15      1.8542e-12      1
         1       75614380        TTTAC   14      T       AAGGT   0.82764 5.1515e-15      1.6485e-12      2
         1       70654981        CCAGG   21      A       GATGA   0.80556 1e-14   2.1333e-12      3
@@ -131,7 +131,7 @@ Msi scorring step will give 4 output files based on given output prefix:
 
 5. output.prefix_germline: germline sites detected
     
-        chromosome   location        front_flank     repeat_times    site_content    tail_flank      xxx|xxxx
+        chromosome   location        left_flank     repeat_times    site_content    right_flank      genotype
         1       1192105 AATAC   11      A       TTAGC   5|5
         1       1330899 CTGCC   5       AG      CACAG   5|5
         1       1598690 AATAC   12      A       TTAGC   5|5

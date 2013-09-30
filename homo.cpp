@@ -172,6 +172,10 @@ void HomoSite::BoolsInitial() {
 void HomoSite::DisGenotyping(Sample &sample) {
     /////// genotyping //////////
     // BoolsInitial();
+    // Total sites
+    ////////////////////////////
+    sample.numberOftotalSites++;
+    ///////////////////////////
     bool reportSomatic, reportGermline;
     reportSomatic = reportGermline = false;
     // update all 
@@ -205,7 +209,7 @@ void HomoSite::DisGenotyping(Sample &sample) {
     unsigned PairIndex = 0;
     if ( withSufCov  ) {
         sample.numberOfDataPoints++;
-        sample.outputPSomatic << log10( pValue ) << std::endl;
+        //sample.outputPSomatic << log10( pValue ) << std::endl;
         //if ( somatic ) sample.numberOfMsiDataPoints++;
     }
 
