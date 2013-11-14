@@ -143,3 +143,8 @@ Msi scorring step will give 4 output files based on given output prefix:
         1       1605407 AAAAG   14      A       GAAAA   1|1
         1       2118724 TTTTC   11      T       CTTTT   1|1
 
+
+Contact
+-------
+Please contact Beifang Niu by bniu@genome.wustl.edu and Kai Ye by kye@genome.wustl.edu if you have any questions.
+
