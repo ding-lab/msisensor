@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a c++ program for automatically detecting somatic and germline variants at microsatellite regions. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+MSIsensor is a C++ program for automatically detecting somatic and germline variants at microsatellite regions. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
 
 Usage
 -----
@@ -63,10 +63,15 @@ If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
 
     sudo yum install git samtools-devel zlib-devel
 
-Clone the samtools and msisensor repos, and build the `msisensor` binary:
+Download the samtools-0.1.19 from SOURCEFORGE (http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
 
-    git clone https://github.com/samtools/samtools.git
-    export SAMTOOLS_ROOT=$PWD/samtools
+    tar jxf samtools-0.1.19.tar.bz2
+    cd samtools-0.1.19
+    make
+    export SAMTOOLS_ROOT=$PWD
+
+Clone the msisensor repos, and build the `msisensor` binary:
+
     git clone https://github.com/ding-lab/msisensor.git
     cd msisensor
     make
