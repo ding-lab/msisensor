@@ -100,18 +100,20 @@ Example
 
 Output
 -------
-There will be one microsatellite list output in "scan" step. 
-Msi scorring step will give 4 output files based on given output prefix:
+There will be one microsatellite list output in "scan" step. Msi scorring step will give 4 output files based on given output prefix:
+        
         output.prefix
         output.prefix_dis
         output.prefix_germline
         output.prefix_somatic
 
 1. microsatellites.list: microsatellite list output 
-   Note:
-   repeat_unit_binary: binary conversion of repeat_unit DNA bases based on A=00, C=01, G=10, and T=11
-   left_flank_binary : binary conversion of left flank DNA bases based on A=00, C=01, G=10, and T=11
-   right_flank_binary: binary conversion of right flank DNA bases based on A=00, C=01, G=10, and T=11
+
+        column description:
+        repeat_unit_binary: binary conversion of repeat_unit DNA bases based on A=00, C=01, G=10, and T=11
+        left_flank_binary : binary conversion of left flank DNA bases based on A=00, C=01, G=10, and T=11
+        right_flank_binary: binary conversion of right flank DNA bases based on A=00, C=01, G=10, and T=11
+
 
         chromosome      location        repeat_unit_length     repeat_unit_binary    repeat_times    left_flank_binary     right_flank_binary      repeat_unit_bases      left_flank_bases       right_flank_bases
         1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
