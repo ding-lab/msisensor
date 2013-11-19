@@ -107,13 +107,7 @@ There will be one microsatellite list output in "scan" step. Msi scorring step w
         output.prefix_germline
         output.prefix_somatic
 
-1. microsatellites.list: microsatellite list output 
-
-        column description:
-        repeat_unit_binary: binary conversion of repeat_unit DNA bases based on A=00, C=01, G=10, and T=11
-        left_flank_binary : binary conversion of left flank DNA bases based on A=00, C=01, G=10, and T=11
-        right_flank_binary: binary conversion of right flank DNA bases based on A=00, C=01, G=10, and T=11
-
+1. microsatellites.list: microsatellite list output ( columns with *_binary means: binary conversion of DNA bases based on A=00, C=01, G=10, and T=11 )
 
         chromosome      location        repeat_unit_length     repeat_unit_binary    repeat_times    left_flank_binary     right_flank_binary      repeat_unit_bases      left_flank_bases       right_flank_bases
         1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
@@ -133,9 +127,7 @@ There will be one microsatellite list output in "scan" step. Msi scorring step w
         N: 0 0 0 0 0 0 0 1 0 0 8 9 1 7 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
         T: 0 0 0 0 0 0 0 0 0 1 19 14 17 9 32 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 
-4. output.prefix_somatic: somatic sites detected
-   Note: 
-   FDR: false discovery rate 
+4. output.prefix_somatic: somatic sites detected ( FDR: false discovery rate ) 
 
         chromosome   location        left_flank     repeat_times    repeat_unit_bases    right_flank      difference      P_value    FDR     rank
         1       16200729        TAAGA   10      T       CTTGT   0.55652 2.8973e-15      1.8542e-12      1
