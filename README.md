@@ -81,6 +81,12 @@ I recommend dumping it in the system directory for locally compiled packages:
 
     sudo mv msisensor /usr/local/bin/
 
+We have also provided pre-build binary distributions for Linux x86_64 and Mac OS X in directory: ./binary
+
+    msisensor_Linux_x86_64: for Linux x86_64
+    msisensor_Mac_OS_X    : for Mac OS X
+
+
 Example
 -------
 1. Scan microsatellites from reference genome:
@@ -101,7 +107,11 @@ Msi scorring step will give 4 output files based on given output prefix:
         output.prefix_germline
         output.prefix_somatic
 
-1. microsatellites.list: microsatellite list output
+1. microsatellites.list: microsatellite list output 
+   Note:
+   repeat_unit_binary: binary conversion of repeat_unit DNA bases based on A=00, C=01, G=10, and T=11
+   left_flank_binary : binary conversion of left flank DNA bases based on A=00, C=01, G=10, and T=11
+   right_flank_binary: binary conversion of right flank DNA bases based on A=00, C=01, G=10, and T=11
 
         chromosome      location        repeat_unit_length     repeat_unit_binary    repeat_times    left_flank_binary     right_flank_binary      repeat_unit_bases      left_flank_bases       right_flank_bases
         1       10485   4       149     3       150     685     GCCC    AGCCG   GGGTC
@@ -122,7 +132,9 @@ Msi scorring step will give 4 output files based on given output prefix:
         T: 0 0 0 0 0 0 0 0 0 1 19 14 17 9 32 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 
 4. output.prefix_somatic: somatic sites detected
-  
+   Note: 
+   FDR: false discovery rate 
+
         chromosome   location        left_flank     repeat_times    repeat_unit_bases    right_flank      difference      P_value    FDR     rank
         1       16200729        TAAGA   10      T       CTTGT   0.55652 2.8973e-15      1.8542e-12      1
         1       75614380        TTTAC   14      T       AAGGT   0.82764 5.1515e-15      1.6485e-12      2
@@ -143,6 +155,14 @@ Msi scorring step will give 4 output files based on given output prefix:
         1       1605407 AAAAG   14      A       GAAAA   1|1
         1       2118724 TTTTC   11      T       CTTTT   1|1
 
+
+Test sample
+-------
+We provided one small sized sample data (tumor and matched normal bam files) for user to try msi scoring step.
+It is very simple to run this test using sample data:
+
+        cd ./test
+        bash run.sh
 
 Contact
 -------

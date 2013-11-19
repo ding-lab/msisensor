@@ -8,7 +8,7 @@ CFLAGS=-O2 -fopenmp
 
 #SAMTOOLS_ROOT=/gscuser/kye/software/samtools-0.1.18/
 FLAGS+=-I${SAMTOOLS_ROOT}
-LFLAGS=-lm -L${SAMTOOLS_ROOT} -lbam -lz
+LFLAGS=-lm -L${SAMTOOLS_ROOT} -lbam -lz -lpthread
 SOURCE = cmds scan distribution refseq polyscan param utilities homo window bamreader sample chi somatic
 OBJS= $(patsubst %,%.o,$(SOURCE))
 
