@@ -60,16 +60,16 @@ RefSeq::~RefSeq() {
 
 // output and clear buffer
 bool RefSeq::PouroutHeader(std::ofstream &fout) {
-    fout << "chromosome"        <<"\t"
-         << "location"          <<"\t"
-         << "site_length"       <<"\t"
-         << "site_content"      <<"\t"
-         << "repeat_times"      <<"\t"
-         << "front_flank"       <<"\t"
-         << "tail_flank"        <<"\t"
-         << "site_bases"        <<"\t"
-         << "front_flank_bases" <<"\t"
-         << "tail_flank_bases"  <<"\n";
+    fout << "chromosome"         <<"\t"
+         << "location"           <<"\t"
+         << "repeat_unit_length" <<"\t"
+         << "repeat_unit_binary" <<"\t"
+         << "repeat_times"       <<"\t"
+         << "left_flank_binary"  <<"\t"
+         << "right_flank_binary" <<"\t"
+         << "repeat_unit_bases"         <<"\t"
+         << "left_flank_bases"  <<"\t"
+         << "right_flank_bases"   <<"\n";
 }
 
 // output and clear buffer
