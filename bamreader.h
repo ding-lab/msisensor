@@ -78,8 +78,13 @@ struct SPLIT_READ
 struct SPLIT_READ {
     SPLIT_READ() {        
         ReadSeq = "";
+        Mapped = true;
+        MatchedRelPos = 0;
+        
     }
     std::string ReadSeq;
+    bool Mapped;
+    unsigned int MatchedRelPos;
 };
 
 struct SupportPerSample {

@@ -51,6 +51,8 @@ HomoSite::HomoSite()
     , fbases("")
     , ebases("")
     , location(0)
+    , lowcut(0)
+    , highcut(0)
     , normalDis(NULL)
     , tumorDis(NULL)
     ////////////

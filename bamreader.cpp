@@ -209,8 +209,10 @@ void build_record( const bam1_t * current_read,
     fetch_func_data_SR *data_for_bam = (fetch_func_data_SR *) data;
     bam_header_t *header = (bam_header_t *) data_for_bam->header;
     std::string Tag = (std::string) data_for_bam->Tag;
+
     const bam1_core_t *current_core;
     const bam1_core_t *mate_core;
+
     current_core = &current_read->core;
     mate_core = &mate_read->core;
     // Determine sample name for read.
@@ -220,6 +222,14 @@ void build_record( const bam1_t * current_read,
         Temp_One_Read.ReadSeq.append (1, bam_nt16_rev_table[bam1_seqi (s, i)]);
     }
     //std::cout<<Temp_One_Read.ReadSeq<<"\n";
+    if ( !flag_current_read->mapped ) {
+       Temp_One_Read.Mapped = false;
+    } else {
+       Temp_One_Read.MatchedRelPos = current_core->pos;
+       Temp_One_Read.Mapped = true;
+    }
+    //std::cout<< Temp_One_Read.MatchedRelPos <<"\n";
+    //
     // load one read
     data_for_bam->LeftReads->push_back(Temp_One_Read);
 

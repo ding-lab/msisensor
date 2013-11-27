@@ -33,6 +33,7 @@
 #include "utilities.h"
 #include "polyscan.h"
 #include "bamreader.h"
+#include "param.h"
 
 extern Param paramd;
 extern bit8_t alphabet[];
@@ -255,6 +256,10 @@ void PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
         toneSite.bases = bases;
         toneSite.fbases = fbases;
         toneSite.ebases = ebases;
+
+        toneSite.lowcut = ((loc - MAX_READ_LENGTH) > 0) ? (loc - MAX_READ_LENGTH) : 0;
+        toneSite.highcut = loc + MAX_READ_LENGTH;
+
         totalSites.push_back(toneSite);
         totalHomosites++;
 

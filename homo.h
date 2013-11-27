@@ -63,6 +63,12 @@ public:
 
     // location
     int location;
+    // added low and high cutoff
+    // for filtering the reads
+    // without the window
+    //
+    int lowcut;
+    int highcut; 
 
     // distribution
     unsigned short **normalDis;

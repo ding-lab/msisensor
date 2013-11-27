@@ -141,6 +141,9 @@ void Window::ScanReads( const std::vector <SPLIT_READ> &readsInWindow,
         HomoSite *p = _startSite + i;
         unsigned long tsize = readsInWindow.size();
         for (unsigned long j=0; j<tsize; j++) {
+            if ( readsInWindow[j].Mapped ) {
+                if ( (readsInWindow[j].MatchedRelPos < p->lowcut) || (readsInWindow[j].MatchedRelPos > p->highcut) ) continue; 
+            }
             unsigned short tCount = DoOneRead(readsInWindow[j].ReadSeq, p);
             if ( (tCount > 0) && (tCount < paramd.s_dispots) ) {
                 if (isTumor) {
@@ -149,6 +152,8 @@ void Window::ScanReads( const std::vector <SPLIT_READ> &readsInWindow,
                     p->normalDis[bamIndex][tCount-1]++;
                 }
             } else {
+                // don't scan reverse if mapped
+                if ( readsInWindow[j].Mapped ) continue; 
                 // reverse
                 std::string tStr = readsInWindow[j].ReadSeq;
                 ReverseComplement(tStr);

@@ -36,6 +36,7 @@
 #define MAX_TRANSFER_LINE_LENGTH 100
 #define MAX_WINDOW 1000000
 #define MAX_SPAN_SIZE 1000
+#define MAX_READ_LENGTH 110
 
 typedef unsigned char bit8_t;
 typedef unsigned short bit16_t;
