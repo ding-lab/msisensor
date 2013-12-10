@@ -5,7 +5,7 @@ MSIsensor is a C++ program for automatically detecting somatic and germline vari
 Usage
 -----
 
-        Version 0.1
+        Version 0.2
         Usage:  msisensor <command> [options]
 
 Key commands:
