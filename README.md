@@ -30,8 +30,8 @@ msisensor scan [options]:
 msisensor msi [options]:
 
        -d   <string>   homopolymer and microsatellites file
-       -n   <string>   normal bam file
-       -t   <string>   tumor  bam file
+       -n   <string>   normal bam file ( bam index file is needed )
+       -t   <string>   tumor  bam file ( bam index file is needed )
        -o   <string>   output distribution file
 
        -e   <string>   bed file, to select a few resions
@@ -97,6 +97,7 @@ Example
 
         msisensor msi -d microsatellites.list -n normal.bam -t tumor.bam -e bed.file -o output.prefix -l 1 -q 1 -b 2
 
+   Note: normal and tumor bam index files are needed in the same directory as bam files 
 
 Output
 -------
