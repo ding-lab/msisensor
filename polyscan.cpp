@@ -376,7 +376,7 @@ void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix
         totalWindows[i].DisGenotypingW(oneSample);
         totalWindows[i].ClearDis();
         readsInWindow.clear();
-        std::cout<<"window: "<<i<<" done...\n";
+        std::cout << "window: " << i << " done...:" <<  totalWindows[i]._chr << ":" << totalWindows[i]._start << "-" << totalWindows[i]._end << std::endl;
     }
     // FDR
     oneSample.calculateFDR();
