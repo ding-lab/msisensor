@@ -112,6 +112,8 @@ void parse_flags_and_tags (const bam1_t * b, flags_hit * flags) {
     return;
 }
 
+/*
+
 static int fetch_func_ALL (const bam1_t * b1, void *data) {
     fetch_func_data_SR *data_for_bam = (fetch_func_data_SR *) data;
     khash_t (read_name) * read_to_map_qual = (khash_t (read_name) *) data_for_bam->read_to_map_qual;
@@ -146,6 +148,24 @@ static int fetch_func_ALL (const bam1_t * b1, void *data) {
     build_record(b1, b2, data, b1_flags);
     build_record(b2, b1, data, b2_flags);
     bam_destroy1 (b2);
+    return 0;
+}
+
+*/
+
+// new version fetch function for single end_reads
+static int fetch_func_ALL (const bam1_t * b1, void *data) {
+    fetch_func_data_SR *data_for_bam = (fetch_func_data_SR *) data;
+    khash_t (read_name) * read_to_map_qual = (khash_t (read_name) *) data_for_bam->read_to_map_qual;
+
+    flags_hit *b1_flags = data_for_bam->b1_flags;
+
+    //SPLIT_READ Temp_One_Read;
+    const bam1_core_t *b1_core;
+    b1_core = &b1->core;
+    parse_flags_and_tags (b1, b1_flags);
+    build_record( b1, data, b1_flags );
+
     return 0;
 }
 
@@ -200,6 +220,40 @@ bool ReadInBamReads( const char *bam_path,
     return true;
 }
 
+// new version build_record for single end reads 
+void build_record( const bam1_t * current_read, 
+                   void *data, 
+                   const flags_hit *flag_current_read ) {   
+
+    SPLIT_READ Temp_One_Read;
+    fetch_func_data_SR *data_for_bam = (fetch_func_data_SR *) data;
+    bam_header_t *header = (bam_header_t *) data_for_bam->header;
+    std::string Tag = (std::string) data_for_bam->Tag;
+
+    const bam1_core_t *current_core;
+    current_core = &current_read->core;
+    // Determine sample name for read.
+    // std::string c_sequence;
+    uint8_t *s = bam1_seq (current_read);
+    for (int i = 0; i <current_core->l_qseq; ++i) {
+        Temp_One_Read.ReadSeq.append (1, bam_nt16_rev_table[bam1_seqi (s, i)]);
+    }
+    //std::cout<<Temp_One_Read.ReadSeq<<"\n";
+    if ( !flag_current_read->mapped ) {
+       Temp_One_Read.Mapped = false;
+    } else {
+       Temp_One_Read.MatchedRelPos = current_core->pos;
+       Temp_One_Read.Mapped = true;
+    }
+    //std::cout<< Temp_One_Read.MatchedRelPos <<"\n";
+    //
+    // load one read
+    data_for_bam->LeftReads->push_back(Temp_One_Read);
+
+    return;
+}
+
+/*
 void build_record( const bam1_t * current_read, 
                    const bam1_t * mate_read, 
                    void *data, 
@@ -235,6 +289,8 @@ void build_record( const bam1_t * current_read,
 
     return;
 }
+
+*/
 
 int32_t bam_cigar2len (const bam1_core_t * c, const uint32_t * cigar) {
     uint32_t k;

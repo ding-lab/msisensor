@@ -116,7 +116,6 @@ struct HomoSiteforBam {
 };
 
 void build_record( const bam1_t * mapped_read, 
-                   const bam1_t * unmapped_read, 
                    void *data, 
                    const flags_hit *flag_current_read);
 
