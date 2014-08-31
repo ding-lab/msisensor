@@ -57,11 +57,11 @@ int main(int argc, char **argv) {
         if (strcmp(argv[1], "scan") == 0) {
             // scan homopolymer and microsate
             HomoAndMicrosateScan(argc-1, argv+1);
-            return 1;
+            return 0;
         } else if (strcmp(argv[1], "msi") == 0) {
             // distribution && msi scoring analysis 
             HomoAndMicrosateDisMsi(argc-1, argv+1);
-            return 1;
+            return 0;
         } else {
             std::cerr<<"ERROR: unrecognized command "<<argv[1]<<"\n";
             return 2;
