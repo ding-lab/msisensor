@@ -71,7 +71,7 @@ void DisUsage(void) {
         <<"       -t   <string>   tumor  bam file\n"
         <<"       -o   <string>   output distribution file\n\n"
 
-        <<"       -e   <string>   bed file\n"
+        <<"       -e   <string>   bed file, optional\n"
         <<"       -f   <double>   FDR threshold for somatic sites detection, default="<<paramd.fdrThreshold<<"\n"
         <<"       -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default="<<paramd.covCutoff<<"\n"
         <<"       -r   <string>   choose one region, format: 1:10000000-20000000\n"    
