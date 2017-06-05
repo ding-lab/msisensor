@@ -83,7 +83,7 @@ double chisqr(int Dof, double Cv) {
     double X = Cv * 0.5;
     if (Dof == 2) { return exp(-1.0 * X); }
     double PValue = igf(K, X);
-    if (isnan(PValue) || isinf(PValue) || PValue <= 1e-8) { return 1e-14; } 
+    if (std::isnan(PValue) || std::isinf(PValue) || PValue <= 1e-8) { return 1e-14; } 
     PValue /= approx_gamma(K);
 	
     return (1.0 - PValue);
