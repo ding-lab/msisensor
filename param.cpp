@@ -60,7 +60,7 @@ void initrevalphabet() {
     for (int i=0; i<256; i++) {
         rev_alphabet[i] = 4;
     }
-    rev_alphabet['c'] = rev_alphabet['A'] = 3;
+    rev_alphabet['a'] = rev_alphabet['A'] = 3;
     rev_alphabet['c'] = rev_alphabet['C'] = 2;
     rev_alphabet['g'] = rev_alphabet['G'] = 1;
     rev_alphabet['t'] = rev_alphabet['T'] = 0;
