@@ -34,7 +34,7 @@ msisensor msi [options]:
        -t   <string>   tumor  bam file ( bam index file is needed )
        -o   <string>   output distribution file
 
-       -e   <string>   bed file, to select a few resions
+       -e   <string>   bed file, to select a few regions
        -f   <double>   FDR threshold for somatic sites detection, default=0.05 
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      mininal homopolymer size, default=5
