@@ -189,9 +189,9 @@ void HomoSite::DisGenotyping(Sample &sample) {
         }
     }
 
-    normalWithSufCov = (normalCov >= param.covCutoff) ? true : false;
+    normalWithSufCov = (normalCov >= paramd.covCutoff) ? true : false;
     
-    if ( normalWithSufCov && (tumorCov >= param.covCutoff) ) {
+    if ( normalWithSufCov && (tumorCov >= paramd.covCutoff) ) {
        withSufCov = true;
        dif = DistanceBetweenTwo( normalDis[0], tumorDis[0] );
        pValue = X2BetweenTwo( normalDis[0], tumorDis[0], param.s_dispots );
