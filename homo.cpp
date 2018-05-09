@@ -145,24 +145,33 @@ void HomoSite::OutputDis() {
 
 // Pourout distribution
 void HomoSite::PouroutDis(Sample &sample) {
-    sample.outputDistribution << chr << " "
-         << location << " "
-         << fbases << " "
-         << length << "["
-         << bases  << "] "
-         << ebases <<"\n";
+  if (normalCov >= paramd.covCutoff && tumorCov >= paramd.covCutoff) {
 
     for (unsigned int j=0; j<polyscan.totalBamPairsNum; j++) {
-        sample.outputDistribution << "N: ";
-        for (unsigned int k=0; k<paramd.s_dispots; k++) {
-            sample.outputDistribution << normalDis[j][k] << " ";
-        }
-        sample.outputDistribution << "\nT: ";
-        for (unsigned int k=0; k<paramd.s_dispots; k++) {
-            sample.outputDistribution << tumorDis[j][k] << " ";
-        }
+      sample.outputDistribution << chr << "\t"
+			 << location << "\t"
+			 << fbases << "\t"
+			 << length << "\t"
+			 << bases  << "\t"
+			 << ebases <<"\t"
+			 << "N";
+      for (unsigned int k=0; k<paramd.s_dispots; k++) {
+        sample.outputDistribution  << "\t" << normalDis[j][k];
+      }
+      sample.outputDistribution << "\n";
+      sample.outputDistribution << chr << "\t"
+			 << location << "\t"
+			 << fbases << "\t"
+			 << length << "\t"
+			 << bases  << "\t"
+			 << ebases <<"\t"
+			 << "T";
+      for (unsigned int k=0; k<paramd.s_dispots; k++) {
+        sample.outputDistribution << "\t" << tumorDis[j][k];
+      }
     }
     sample.outputDistribution << "\n";
+  }
 }
 
 // initial bools

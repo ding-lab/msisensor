@@ -68,7 +68,7 @@ void Sample::iniOutput( const std::string &gavePrefix ) {
    // outputPSomatic.open( (outputPrefix + "_p_somatic").c_str() );
     outputSomatic.open( (outputPrefix + "_somatic").c_str() );
     outputGermline.open( (outputPrefix + "_germline").c_str() );
-    outputDistribution.open( (outputPrefix + "_dis").c_str() );
+    outputDistribution.open( (outputPrefix + "_dis_tab").c_str() );
 
     //if ( !output || !outputPSomatic || !outputSomatic || !outputGermline || !outputDistribution ) {
     if ( !output || !outputSomatic || !outputGermline || !outputDistribution ) {
