@@ -372,8 +372,8 @@ void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix
     for (int i=0; i< totalWindowsNum; i++) {
         totalWindows[i].InitialDisW();
         totalWindows[i].GetDistribution(readsInWindow);
-        totalWindows[i].PouroutDisW(oneSample);
         totalWindows[i].DisGenotypingW(oneSample);
+        totalWindows[i].PouroutDisW(oneSample);
         totalWindows[i].ClearDis();
         readsInWindow.clear();
         std::cout << "window: " << i << " done...:" <<  totalWindows[i]._chr << ":" << totalWindows[i]._start << "-" << totalWindows[i]._end << std::endl;
