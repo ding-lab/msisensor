@@ -1,6 +1,9 @@
 MSIsensor
 ===========
-MSIsensor is a C++ program for automatically detecting somatic and germline variants at microsatellite regions. It computes length distributions of microsatellites per site in paired tumor and normal sequence data, subsequently using these to statistically compare observed distributions in both samples. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+
+If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
+
 
 Usage
 -----
@@ -14,48 +17,48 @@ Key commands:
         msi             msi scoring
 
 msisensor scan [options]:
-       
+
        -d   <string>   reference genome sequences file, *.fasta format
-       -o   <string>   output homopolymer and microsatelites file
+       -o   <string>   output homopolymer and microsatelittes file
 
        -l   <int>      minimal homopolymer size, default=5
        -c   <int>      context length, default=5
        -m   <int>      maximal homopolymer size, default=50
-       -s   <int>      maximal length of microsatellite, default=5
-       -r   <int>      minimal repeat times of microsatellite, default=3
+       -s   <int>      maximal length of microsate, default=5
+       -r   <int>      minimal repeat times of microsate, default=3
        -p   <int>      output homopolymer only, 0: no; 1: yes, default=0
-       
+
        -h   help
- 
+
 msisensor msi [options]:
 
-       -d   <string>   homopolymer and microsatellites file
-       -n   <string>   normal bam file ( bam index file is needed )
-       -t   <string>   tumor  bam file ( bam index file is needed )
+       -d   <string>   homopolymer and microsates file
+       -n   <string>   normal bam file
+       -t   <string>   tumor  bam file
        -o   <string>   output distribution file
 
-       -e   <string>   bed file, to select a few regions
-       -f   <double>   FDR threshold for somatic sites detection, default=0.05 
+       -e   <string>   bed file, optional
+       -f   <double>   FDR threshold for somatic sites detection, default=0.05
+       -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default=20
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      mininal homopolymer size, default=5
        -p   <int>      mininal homopolymer size for distribution analysis, default=10
        -m   <int>      maximal homopolymer size for distribution analysis, default=50
-       -q   <int>      mininal microsatellites size, default=3
-       -s   <int>      mininal number of repeats in microsatellites for distribution analysis, default=5
-       -w   <int>      maximal microsatellites size for distribution analysis, default=40
+       -q   <int>      mininal microsates size, default=3
+       -s   <int>      mininal microsates size for distribution analysis, default=5
+       -w   <int>      maximal microstaes size for distribution analysis, default=40
        -u   <int>      span size around window for extracting reads, default=500
        -b   <int>      threads number for parallel computing, default=1
        -x   <int>      output homopolymer only, 0: no; 1: yes, default=0
        -y   <int>      output microsatellite only, 0: no; 1: yes, default=0
-       
+
        -h   help
+
 
 Install
 -------
-The Makefile assumes that you have the samtools source code in an environment variable `$SAMTOOLS_ROOT`. 
 
-you don't know what that means, then simply follow these steps from any directory that you have permissions to write into:
-Install some prerequisite packages if you are using Debian or Ubuntu:
+You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
 
     sudo apt-get install git libbam-dev zlib1g-dev
 
@@ -63,25 +66,26 @@ If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
 
     sudo yum install git samtools-devel zlib-devel
 
-Download the samtools-0.1.19 from SOURCEFORGE (http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
+The Makefile assumes you have samtools-0.1.19 source code in environment variable `$SAMTOOLS_ROOT`.
+If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
 
     tar jxf samtools-0.1.19.tar.bz2
     cd samtools-0.1.19
     make
     export SAMTOOLS_ROOT=$PWD
 
-Clone the msisensor repos, and build the `msisensor` binary:
+Clone the msisensor master branch, and build the `msisensor` binary:
 
     git clone https://github.com/ding-lab/msisensor.git
     cd msisensor
     make
 
-Now you can put the resulting binary where your `$PATH` can find it. If you have su permissions, then
-I recommend dumping it in the system directory for locally compiled packages:
+Now you can put the resulting binary where your `$PATH` can find it. If you have su permissions,
+then we recommend dumping it in the system directory for locally compiled packages:
 
     sudo mv msisensor /usr/local/bin/
 
-We have also provided pre-build binary distributions for Linux x86_64 and Mac OS X in directory: ./binary
+Pre-built binaries for Linux x86_64 and Mac OS X are in this directory: `./binary`
 
     msisensor_Linux_x86_64: for Linux x86_64
     msisensor_Mac_OS_X    : for Mac OS X
@@ -90,21 +94,21 @@ We have also provided pre-build binary distributions for Linux x86_64 and Mac OS
 Example
 -------
 1. Scan microsatellites from reference genome:
-  
-        msisensor scan -d referen.fa -o microsatellites.list
 
-2. Msi scorring: 
+        msisensor scan -d reference.fa -o microsatellites.list
 
-        msisensor msi -d microsatellites.list -n normal.bam -t tumor.bam -e bed.file -o output.prefix -l 1 -q 1 -b 2
+2. MSI scoring:
 
-   Note: normal and tumor bam index files are needed in the same directory as bam files 
+        msisensor msi -d microsatellites.list -n normal.bam -t tumor.bam -e bed.file -o output.prefix
+
+   Note: normal and tumor bam index files are needed in the same directory as bam files
 
 Output
 -------
-There will be one microsatellite list output in "scan" step. Msi scorring step will give 4 output files based on given output prefix:
-        
+The list of microsatellites is output in "scan" step. The MSI scoring step produces 4 files:
+
         output.prefix
-        output.prefix_dis
+        output.prefix_dis_tab
         output.prefix_germline
         output.prefix_somatic
 
@@ -122,13 +126,12 @@ There will be one microsatellite list output in "scan" step. Msi scorring step w
         Total_Number_of_Sites   Number_of_Somatic_Sites %
         640     75      11.72
 
-3. output.prefix_dis: read count distribution (N: normal; T: tumor)
+3. output.prefix_dis_tab: read count distribution (N: normal; T: tumor)
 
-        1 10529896 CTTTC 15[T] GAGAC
-        N: 0 0 0 0 0 0 0 1 0 0 8 9 1 7 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-        T: 0 0 0 0 0 0 0 0 0 1 19 14 17 9 32 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+        1       16248728        ACCTC   11      T       AAAGG   N       0       0       0       0       1       38      0       0       0       0       0       0       0
+        1       16248728        ACCTC   11      T       AAAGG   T       0       0       0       0       17      22      1       0       0       0       0       0       0
 
-4. output.prefix_somatic: somatic sites detected ( FDR: false discovery rate ) 
+4. output.prefix_somatic: somatic sites detected ( FDR: false discovery rate )
 
         chromosome   location        left_flank     repeat_times    repeat_unit_bases    right_flank      difference      P_value    FDR     rank
         1       16200729        TAAGA   10      T       CTTGT   0.55652 2.8973e-15      1.8542e-12      1
@@ -142,7 +145,7 @@ There will be one microsatellite list output in "scan" step. Msi scorring step w
         1       41456808        CTAAC   14      T       CTTTT   0.76286 1e-14   7.1111e-13      9
 
 5. output.prefix_germline: germline sites detected
-    
+
         chromosome   location        left_flank     repeat_times    repeat_unit_bases    right_flank      genotype
         1       1192105 AATAC   11      A       TTAGC   5|5
         1       1330899 CTGCC   5       AG      CACAG   5|5
@@ -153,13 +156,15 @@ There will be one microsatellite list output in "scan" step. Msi scorring step w
 
 Test sample
 -------
-We provided one small sized sample data (tumor and matched normal bam files) for user to try msi scoring step.
-It is very simple to run this test using sample data:
+We provided one small dataset (tumor and matched normal bam files) to test the msi scoring step:
 
         cd ./test
         bash run.sh
 
 Contact
 -------
-Please contact Beifang Niu by bniu@genome.wustl.edu and Kai Ye by kye@genome.wustl.edu if you have any questions.
-
+If you have any questions, please contact one or more of the following folks:
+Beifang Niu <bniu@sccas.cn>
+Kai Ye <kaiye@xjtu.edu.cn>
+Li Ding <lding@wustl.edu>
+Cyriac Kandoth <ckandoth@gmail.com>
