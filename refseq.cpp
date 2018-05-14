@@ -32,10 +32,7 @@
 #include "utilities.h"
 #include "refseq.h"
 
-// scanning
 extern Param param;
-// distribution 
-extern Param paramd;
 
 extern bit8_t alphabet[];
 extern bit8_t rev_alphabet[];
