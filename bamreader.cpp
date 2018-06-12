@@ -200,6 +200,12 @@ bool ReadInBamReads( const char *bam_path,
     data.b2_flags = &b2_flags;
     data.Tag = Tag;
     // std:: cout << " before bam_fetch " << std::endl;
+    // give warning and abort if using dif refs
+    if (tid == -1) {
+        std::cout << "Program aborted: " << std::endl;
+        std::cout << "Same reference genome file should be used in both 'msisensor scan' and 'msisensor msi' steps!!!"<<std::endl;
+        exit(1);
+    }
     bam_fetch (fp, idx, tid, start, end, &data, fetch_func_ALL);
     // std:: cout << " after bam_fetch " << std::endl;
     khint_t key;
