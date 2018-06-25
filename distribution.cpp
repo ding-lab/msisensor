@@ -61,6 +61,7 @@ std::ifstream finH;
 std::ifstream finM;
 std::ifstream finB;
 std::ofstream foutD;
+std::ofstream foutO;
 
 std::string one_region;
 
@@ -73,14 +74,15 @@ void DisUsage(void) {
 
         <<"       -e   <string>   bed file, optional\n"
         <<"       -f   <double>   FDR threshold for somatic sites detection, default="<<paramd.fdrThreshold<<"\n"
+        <<"       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default="<<paramd.comentropyThreshold<<"\n"
         <<"       -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default="<<paramd.covCutoff<<"\n"
         <<"       -r   <string>   choose one region, format: 1:10000000-20000000\n"    
-        <<"       -l   <int>      mininal homopolymer size, default="<<paramd.MininalHomoSize<<"\n"
-        <<"       -p   <int>      mininal homopolymer size for distribution analysis, default="<<paramd.MininalHomoForDis<<"\n"
+        <<"       -l   <int>      minimal homopolymer size, default="<<paramd.MininalHomoSize<<"\n"
+        <<"       -p   <int>      minimal homopolymer size for distribution analysis, default="<<paramd.MininalHomoForDis<<"\n"
         <<"       -m   <int>      maximal homopolymer size for distribution analysis, default="<<paramd.MaxHomoSize<<"\n"
 
-        <<"       -q   <int>      mininal microsates size, default="<<paramd.MinMicrosate<<"\n"
-        <<"       -s   <int>      mininal microsates size for distribution analysis, default="<<paramd.MinMicrosateForDis<<"\n"
+        <<"       -q   <int>      minimal microsates size, default="<<paramd.MinMicrosate<<"\n"
+        <<"       -s   <int>      minimal microsates size for distribution analysis, default="<<paramd.MinMicrosateForDis<<"\n"
         <<"       -w   <int>      maximal microstaes size for distribution analysis, default="<<paramd.MaxMicrosateForDis<<"\n"
 
         <<"       -u   <int>      span size around window for extracting reads, default="<<paramd.DisSpan<<"\n"
@@ -105,6 +107,7 @@ int dGetOptions(int rgc, char *rgv[]) {
             case 'e': bedFile  = rgv[++i]; break;
             case 'r': one_region = rgv[++i]; break;
             case 'f': paramd.fdrThreshold  = atof(rgv[++i]); break;
+            case 'i': paramd.comentropyThreshold = atof(rgv[++i]); break;
             case 'c': paramd.covCutoff = atoi(rgv[++i]); break;
             case 'l': paramd.MininalHomoSize = atoi(rgv[++i]); break;
             case 'p': paramd.MininalHomoForDis = atoi(rgv[++i]); break;
@@ -152,8 +155,14 @@ int HomoAndMicrosateDisMsi(int argc, char *argv[]) {
     }
 
     // load bam files
-    polyscan.LoadBams( normalBam, tumorBam );
-
+    //polyscan.LoadBams( normalBam, tumorBam );
+    if (!normalBam.empty() && !tumorBam.empty()) {
+        polyscan.LoadBams( normalBam, tumorBam );
+    }
+    // just for tumor only data
+    if (normalBam.empty() && !tumorBam.empty()) {
+        polyscan.LoadBam(tumorBam);
+    }
     // check homo/microsate file
     finH.open(homoFile.c_str());
     if (!finH) {
@@ -170,7 +179,14 @@ int HomoAndMicrosateDisMsi(int argc, char *argv[]) {
     std::cout << "\nTotal loading homopolymer and microsatellites:  " << polyscan.totalHomosites << " \n\n";
 
     // change code to one sample
-    polyscan.GetHomoDistribution(sample, disFile);
+    //polyscan.GetHomoDistribution(sample, disFile);
+    // control distribution for tumor only input
+    if (!normalBam.empty() && !tumorBam.empty()) {
+        polyscan.GetHomoDistribution(sample, disFile);
+    }
+    if (normalBam.empty() && !tumorBam.empty()) {
+        polyscan.GetHomoTumorDistribution(sample, disFile);
+    }
 
     std::cout << "\nTotal time consumed:  " << Cal_AllTime() << " secs\n\n";
 

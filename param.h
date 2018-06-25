@@ -88,6 +88,7 @@ public:
     // genotyping 
     unsigned int covCutoff;
     double fdrThreshold;
+    double comentropyThreshold;
 
 };
 

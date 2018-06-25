@@ -34,12 +34,14 @@
 #include "polyscan.h"
 #include "bamreader.h"
 #include "param.h"
+#include "sample.h"
 
 extern Param paramd;
 extern bit8_t alphabet[];
 extern bit8_t rev_alphabet[];
 extern char uhomo_code[];
 extern char homo_code[];
+extern Sample sample;
 
 PolyScan::PolyScan() { 
     homosBuffer.reserve(paramd.bufSize);
@@ -161,8 +163,23 @@ void PolyScan::LoadBams(const std::string &bam1, const std::string &bam2) {
     totalBamPairsNum++;
 }
 
+// loading bam list
+// load tumor bam file only
+void PolyScan::LoadBam(const std::string &bam) {
+    BamTumors t_bamtumor;
+    t_bamtumor.sName = "sample_name";
+
+    if (bam.find(".bam") != std::string::npos) {
+        t_bamtumor.tumor_bam = bam;
+    } else { std::cerr << "please provide valid format normal bam file ! \n"; exit(0); }
+
+    // loading
+    totalBamTumors.push_back(t_bamtumor);
+    totalBamTumorsNum++;
+}
+
 // read and load sites
-void PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
+bool PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
     std::string chr;
     std::string bases;
     std::string fbases;
@@ -231,7 +248,8 @@ void PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
                     tbedRegion = tbedChr.regions_list[j];
                 } else { continue; }
             }
-            // filtering 
+            // filtering
+            /* 
             if (loc < tbedRegion.start) continue;
             if (loc > tbedRegion.end) {
                 for (j; j<tbedChr.regions_list.size(); j++) {
@@ -241,6 +259,17 @@ void PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
                 if (j >= tbedChr.regions_list.size()) continue;
             }
             if ((loc + siteLength * siteRepeats) > tbedRegion.end) continue;
+            */
+            // filtering 
+            if ((loc + siteLength * siteRepeats) < tbedRegion.start) continue;
+            if (loc > tbedRegion.end) {
+                for (j; j<tbedChr.regions_list.size(); j++) {
+                    tbedRegion = tbedChr.regions_list[j];
+                    if (loc <= tbedRegion.end) { break; }
+                }
+                if ((loc + siteLength * siteRepeats) < tbedRegion.start) continue;
+                if (j >= tbedChr.regions_list.size()) continue;
+            }
         }
 
         // load sites 
@@ -268,6 +297,8 @@ void PolyScan::LoadHomosAndMicrosates(std::ifstream &fin) {
 
     } // end while
 
+    if (totalHomosites != 0) return true;
+    return false;
 }
 
 // bed regions ?
@@ -365,7 +396,6 @@ void PolyScan::outputDistributions() {
 }
 
 // get distribution 
-//void PolyScan::GetHomoDistribution( std::ofstream &fout ) {
 void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix ) {
     oneSample.iniOutput(prefix);
     std::vector< SPLIT_READ > readsInWindow;
@@ -382,6 +412,25 @@ void PolyScan::GetHomoDistribution( Sample &oneSample, const std::string &prefix
     oneSample.calculateFDR();
     oneSample.pourOutSomaticFDR();
     // MSI score
+    oneSample.pourOutMsiScore();
+    oneSample.closeOutStream();
+    oneSample.VerboseInfo();
+
+}
+
+// for tumor only input
+void PolyScan::GetHomoTumorDistribution( Sample &oneSample, const std::string &prefix ) {
+    oneSample.iniTumorDisOutput(prefix);
+    std::vector< SPLIT_READ > readsInWindow;
+    for (int i=0; i< totalWindowsNum; i++) {
+        totalWindows[i].InitialTumorDisW();
+        totalWindows[i].GetTumorDistribution(readsInWindow);
+        totalWindows[i].PourTumoroutDisW(oneSample);
+        totalWindows[i].PouroutTumorSomatic(oneSample);
+        totalWindows[i].ClearTumorDis();
+        readsInWindow.clear();
+        std::cout << "window: " << i << " done...:" <<  totalWindows[i]._chr << ":" << totalWindows[i]._start << "-" << totalWindows[i]._end << std::endl;
+    }
     oneSample.pourOutMsiScore();
     oneSample.closeOutStream();
     oneSample.VerboseInfo();

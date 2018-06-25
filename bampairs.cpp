@@ -29,7 +29,7 @@
 #include <bitset>
 #include <omp.h>
 
-#include "Bampairs.h"
+#include "bampairs.h"
 
 extern Param paramd;
 

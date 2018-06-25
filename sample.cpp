@@ -28,6 +28,7 @@
 #include <sstream>
 #include <bitset>
 #include <omp.h>
+#include <iomanip>
 
 #include "sample.h"
 #include "param.h"
@@ -68,7 +69,7 @@ void Sample::iniOutput( const std::string &gavePrefix ) {
    // outputPSomatic.open( (outputPrefix + "_p_somatic").c_str() );
     outputSomatic.open( (outputPrefix + "_somatic").c_str() );
     outputGermline.open( (outputPrefix + "_germline").c_str() );
-    outputDistribution.open( (outputPrefix + "_dis_tab").c_str() );
+    outputDistribution.open( (outputPrefix + "_dis").c_str() );
 
     //if ( !output || !outputPSomatic || !outputSomatic || !outputGermline || !outputDistribution ) {
     if ( !output || !outputSomatic || !outputGermline || !outputDistribution ) {
@@ -77,12 +78,34 @@ void Sample::iniOutput( const std::string &gavePrefix ) {
     }
 }
 
+void Sample::iniTumorDisOutput( const std::string &gavePrefix ) { 
+    if ( !gavePrefix.empty()  ) { outputPrefix = gavePrefix; }
+    // init pour out result files
+    output.open( outputPrefix.c_str() );
+    outputSomatic.open( (outputPrefix + "_somatic").c_str() );
+    outputDistribution.open( (outputPrefix + "_dis").c_str() );
+
+    //if ( !output || !outputPSomatic || !outputSomatic || !outputGermline || !outputDistribution ) {
+    if ( !output || !outputDistribution || !outputSomatic) {
+        std::cerr <<"failed to open output files to write !"<< std::endl; 
+        exit(1);
+    }
+}
+
 void Sample::pourOutMsiScore() {
     output << "Total_Number_of_Sites\tNumber_of_Somatic_Sites\t%" << std::endl;
-    output << numberOfDataPoints << "\t" 
-           << numberOfMsiDataPoints << "\t" 
-           << std::fixed 
-           << (numberOfMsiDataPoints / (double)numberOfDataPoints) * 100.0 << std::endl;
+    if ( numberOfDataPoints != 0) {
+        output << numberOfDataPoints << "\t" 
+            << numberOfMsiDataPoints << "\t" 
+            << std::fixed 
+            << (numberOfMsiDataPoints / (double)numberOfDataPoints) * 100.0 << std::endl;
+    } else {
+        output << numberOfDataPoints << "\t"
+            << numberOfMsiDataPoints << "\t"
+            << std::setprecision(2)
+            << std::fixed
+            << 0.00 << std::endl;
+    }
 }
 
 void Sample::closeOutStream() {

@@ -102,5 +102,19 @@ struct BamPairs {
 
 };
 
+// Bam file tumors
+struct BamTumors {
+    BamTumors()
+        : sName("")
+        , tumor_bam("")
+    {
+        //xxx
+    }
+    std::string sName;
+    // bam files
+    std::string tumor_bam;
+
+};
+
 #endif //_STRUCTS_H_
 

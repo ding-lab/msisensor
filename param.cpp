@@ -102,6 +102,7 @@ Param::Param()
     , windowSize(500000) // window size (default 50k)
     , covCutoff( 20 )
     , fdrThreshold( 0.05 ) 
+    , comentropyThreshold( 0.5 ) // for tumor only
 {
     inital_homo_phabet();
     initalphabet();

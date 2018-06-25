@@ -40,7 +40,7 @@
 // sample
 class Sample {
 public:
-    Sample();
+     Sample();
     ~Sample();
 
     std::string outputPrefix;
@@ -64,6 +64,7 @@ public:
     std::vector< SomaticSite > totalSomaticSites;
 
     void iniOutput( const std::string &gavePrefix );
+    void iniTumorDisOutput( const std::string &gavePrefix );
     void pourOutMsiScore();
     void closeOutStream();
     void calculateFDR();

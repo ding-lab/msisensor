@@ -65,15 +65,18 @@ class PolyScan
 
         // load bam list file 
         std::vector< BamPairs > totalBamPairs;
+    	std::vector< BamTumors > totalBamTumors;
         //void LoadBams(std::ifstream &fin);
         void LoadBams(const std::string &nBam, const std::string &tBam);
+        void LoadBam(const std::string &tBam);
         unsigned int totalBamPairsNum;
+        unsigned int totalBamTumorsNum;
 
         // load homos and microsatellites
         unsigned long totalHomosites; 
         //std::vector< HomoSite * > totalSites;
         std::vector< HomoSite  > totalSites;
-        void LoadHomosAndMicrosates(std::ifstream &fin);
+        bool LoadHomosAndMicrosates(std::ifstream &fin);
         void TestHomos();
 
         std::vector< HomoSite > homosBuffer;
@@ -89,7 +92,8 @@ class PolyScan
         void outputDistributions();
         void releaseDistributions(); 
         void GetHomoDistribution( Sample &oneSample, const std::string &prefix );
-        
+        void GetHomoTumorDistribution( Sample &oneSample, const std::string &prefix );
+
 protected:
 
         // xxxxxx
