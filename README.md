@@ -8,7 +8,7 @@ If you used this tool for your work, please cite [PMID 24371154](https://www.ncb
 Usage
 -----
 
-        Version 0.2
+        Version 0.3
         Usage:  msisensor <command> [options]
 
 Key commands:
