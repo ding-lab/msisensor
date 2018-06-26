@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data.
+MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are still many users complained that they don't have normal control sequence data or related normal sequence data can be used to make a paired normal control,we released new MSIsensor V0.3. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy for a distribution per microsatellite in tumor only data. Our test results show that it's performance is comparable with paired tumor and normal sequence data as input. We suggest msi score cutoff for somatic sites is 30% comentory value ( msi high >= 30% ).
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
 
@@ -39,13 +39,14 @@ msisensor msi [options]:
 
        -e   <string>   bed file, optional
        -f   <double>   FDR threshold for somatic sites detection, default=0.05
+       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default=0.5
        -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default=20
        -r   <string>   choose one region, format: 1:10000000-20000000
-       -l   <int>      mininal homopolymer size, default=5
-       -p   <int>      mininal homopolymer size for distribution analysis, default=10
+       -l   <int>      minimal homopolymer size, default=5
+       -p   <int>      minimal homopolymer size for distribution analysis, default=10
        -m   <int>      maximal homopolymer size for distribution analysis, default=50
-       -q   <int>      mininal microsates size, default=3
-       -s   <int>      mininal microsates size for distribution analysis, default=5
+       -q   <int>      minimal microsates size, default=3
+       -s   <int>      minimal microsates size for distribution analysis, default=5
        -w   <int>      maximal microstaes size for distribution analysis, default=40
        -u   <int>      span size around window for extracting reads, default=500
        -b   <int>      threads number for parallel computing, default=1
@@ -99,7 +100,13 @@ Example
 
 2. MSI scoring:
 
+   for paired tumor and normal sequence data:
+
         msisensor msi -d microsatellites.list -n normal.bam -t tumor.bam -e bed.file -o output.prefix
+
+   for tumor only sequence data:
+
+        msisensor msi -d microsatellites.list -t tumor.bam -e bed.file -o output.tumor.prefix
 
    Note: normal and tumor bam index files are needed in the same directory as bam files
 
@@ -111,6 +118,12 @@ The list of microsatellites is output in "scan" step. The MSI scoring step produ
         output.prefix_dis_tab
         output.prefix_germline
         output.prefix_somatic
+
+for tumor only input, the MSI scoreing step produces 3 files: 
+
+        output.tumor.prefix
+        output.tumor.prefix_dis_tab
+        output.tumor.prefix_somatic
 
 1. microsatellites.list: microsatellite list output ( columns with *_binary means: binary conversion of DNA bases based on A=00, C=01, G=10, and T=11 )
 
