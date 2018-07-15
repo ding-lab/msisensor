@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor V0.3. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy value for a distribution per microsatellite. Our test results show that it's performance is comparable with paired tumor and normal sequence data input. We suggest msi score cutoff 30% for tumor only data. (msi high: msi score >= 30%).
+MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor V0.3. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy value for a distribution per microsatellite. Our test results show that it's performance is comparable with paired tumor and normal sequence data input. We suggest msi score cutoff 11% for tumor only data. (msi high: msi score >= 11%).
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
 
@@ -39,7 +39,7 @@ msisensor msi [options]:
 
        -e   <string>   bed file, optional
        -f   <double>   FDR threshold for somatic sites detection, default=0.05
-       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default=0.5
+       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default=1
        -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default=20
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      minimal homopolymer size, default=5
