@@ -179,12 +179,12 @@ We provided one small dataset (tumor and matched normal bam files) to test the m
 We also provided a R script to visualize MSI score distribution of MSIsensor output. ( msi score list only or msi score list accompanied with known msi status). For msi score list only as input: 
 
         R CMD BATCH "--args msi_score_only_list msi_score_only_distribution.pdf" plot.r
-        ![](https://github.com/ding-lab/msisensor/blob/master/test/msi_score_only_distribution.jpg)
+![](https://github.com/ding-lab/msisensor/blob/master/test/msi_score_only_distribution.jpg)
 
 For msi score list accompanied with known msi status as input:
 
         R CMD BATCH "--args msi_score_and_status_list msi_score_and_status_distribution.pdf" plot.r
-        ![](https://github.com/ding-lab/msisensor/blob/master/test/msi_score_and_status_distribution.jpg)
+![](https://github.com/ding-lab/msisensor/blob/master/test/msi_score_and_status_distribution.jpg)
 
 
 Contact
