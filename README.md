@@ -71,7 +71,7 @@ If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
 
 The Makefile assumes you have samtools-1.8 source code in environment variable `$SAMTOOLS_ROOT` and hislib-1.8 source code in an environment variable `$HTSLIB_ROOT`.
 
-If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/1.8):
+If not, then download samtools-1.8 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/1.8):
 
     tar jxf samtools-1.8.tar.bz2
     cd samtools-1.8
