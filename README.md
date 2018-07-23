@@ -10,7 +10,7 @@ If you used this tool for your work, please cite [PMID 24371154](https://www.ncb
 Usage
 -----
 
-        Version 0.3
+        Version 0.4
         Usage:  msisensor <command> [options]
 
 Key commands:
@@ -63,19 +63,25 @@ Install
 
 You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
 
-    sudo apt-get install git libbam-dev zlib1g-dev
+    sudo apt-get install git libbam-dev zlib1g-dev libnurses5-dev libbz2-dev liblzma-dev
 
 If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
 
-    sudo yum install git samtools-devel zlib-devel
+    sudo yum install git samtools-devel zlib-devel ncurses-devel bzip2-devel xz-devel.x86_64
 
-The Makefile assumes you have samtools-0.1.19 source code in environment variable `$SAMTOOLS_ROOT`.
-If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
+The Makefile assumes you have samtools-1.8 source code in environment variable `$SAMTOOLS_ROOT` and hislib-1.8 source code in an environment variable `$HTSLIB_ROOT`.
 
-    tar jxf samtools-0.1.19.tar.bz2
-    cd samtools-0.1.19
-    make
+If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/1.8):
+
+    tar jxf samtools-1.8.tar.bz2
+    cd samtools-1.8
+    ./configure --prefix=/path/to/location
+    make all all-htslib
+    make install install-htslib
     export SAMTOOLS_ROOT=$PWD
+    cd htslib-1.8
+    export HTSLIB_ROOT=$PWD
+    export LD_LIBRARY_PATH=/path/to/location/lib:$LD_LIBRARY_PATH
 
 Clone the msisensor master branch, and build the `msisensor` binary:
 

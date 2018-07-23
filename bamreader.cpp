@@ -25,11 +25,11 @@
 
 // Samtools header files
 #include "bam.h"
-#include "sam.h"
-#include "kstring.h"
-#include "kseq.h"
-#include "khash.h"
-#include "ksort.h"
+#include "htslib/sam.h"
+#include "htslib/kstring.h"
+#include "htslib/kseq.h"
+#include "htslib/khash.h"
+#include "htslib/ksort.h"
 
 // Bam header files
 #include "bamreader.h"
@@ -183,12 +183,12 @@ bool ReadInBamReads( const char *bam_path,
     idx = bam_index_load (bam_path); // load BAM index
     assert (idx);
     bam_header_t *header = bam_header_read (fp);
-    bam_init_header_hash (header);
-    assert (header);
+    //bam_init_header_hash (header);
+    //assert (header);
 
     int tid;
 
-    tid = bam_get_tid (header, FragName.c_str ());
+    tid = bam_name2id (header, FragName.c_str ());
     fetch_func_data_SR data;
     data.header = header;
     data.LeftReads = &AllReads;
