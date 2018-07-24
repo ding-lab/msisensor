@@ -33,7 +33,7 @@
 #include "cmds.h"
 
 #ifndef VERSION
-#define VERSION "v0.4"
+#define VERSION "v0.5"
 #endif
 
 int usage(void) {

@@ -1,6 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor V0.4. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy value for a distribution per microsatellite. Our test results show that it's performance is comparable with paired tumor and normal sequence data input(figure below). We suggest msi score cutoff 11% for tumor only data. (msi high: msi score >= 11%).
+MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor with version from 0.3. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy value for a distribution per microsatellite. Our test results show that it's performance is comparable with paired tumor and normal sequence data input(figure below). We suggest msi score cutoff 11% for tumor only data. (msi high: msi score >= 11%).
 
 ![](https://github.com/ding-lab/msisensor/blob/master/test/tumor_only_vs_pair.jpg)
 
@@ -10,7 +10,7 @@ If you used this tool for your work, please cite [PMID 24371154](https://www.ncb
 Usage
 -----
 
-        Version 0.4
+        Version 0.5
         Usage:  msisensor <command> [options]
 
 Key commands:
@@ -63,25 +63,19 @@ Install
 
 You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
 
-    sudo apt-get install git libbam-dev zlib1g-dev libnurses5-dev libbz2-dev liblzma-dev
+    sudo apt-get install git libbam-dev zlib1g-dev
 
 If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
 
-    sudo yum install git samtools-devel zlib-devel ncurses-devel bzip2-devel xz-devel.x86_64
+    sudo yum install git samtools-devel zlib-devel
 
-The Makefile assumes you have samtools-1.8 source code in environment variable `$SAMTOOLS_ROOT` and hislib-1.8 source code in an environment variable `$HTSLIB_ROOT`.
+The Makefile assumes you have samtools-0.1.19 source code in environment variable `$SAMTOOLS_ROOT`.
+If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
 
-If not, then download samtools-1.8 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/1.8):
-
-    tar jxf samtools-1.8.tar.bz2
-    cd samtools-1.8
-    ./configure --prefix=/path/to/location
-    make all all-htslib
-    make install install-htslib
+    tar jxf samtools-0.1.19.tar.bz2
+    cd samtools-0.1.19
+    make
     export SAMTOOLS_ROOT=$PWD
-    cd htslib-1.8
-    export HTSLIB_ROOT=$PWD
-    export LD_LIBRARY_PATH=/path/to/location/lib:$LD_LIBRARY_PATH
 
 Clone the msisensor master branch, and build the `msisensor` binary:
 
@@ -99,6 +93,7 @@ Pre-built binaries for Linux x86_64 and Mac OS X are in this directory: `./binar
     msisensor_Linux_x86_64: for Linux x86_64
     msisensor_Mac_OS_X    : for Mac OS X
 
+Note: We have also released a standalone version v0.4 for users who prefer to use htslib samtools like samtools-1.8.
 
 Example
 -------

@@ -24,11 +24,11 @@
 
 // Samtools header files
 #include "bam.h"
-#include "htslib/sam.h"
-#include "htslib/kstring.h"
-#include "htslib/kseq.h"
-#include "htslib/khash.h"
-#include "htslib/ksort.h"
+#include "sam.h"
+#include "kstring.h"
+#include "kseq.h"
+#include "khash.h"
+#include "ksort.h"
 
 const unsigned g_SpacerBeforeAfter = 10000000;
 

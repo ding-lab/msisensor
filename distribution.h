@@ -36,18 +36,17 @@
 #include "param.h"
 
 // Samtools header files
-#include "htslib/sam.h"
-#include "htslib/khash.h"
+#include "khash.h"
+#include "sam.h"
 
 //using namespace std;
 
 #ifdef __cplusplus
 extern "C" 
 {
-    int bam_name2id(bam_hdr_t *h, const char *ref);
-    //int32_t bam_get_tid(const bam_header_t * header, const char *seq_name);
-    int64_t bam_aux2i(const uint8_t * s);
-    //void bam_init_header_hash(bam_header_t * header);
+    int32_t bam_get_tid(const bam_header_t * header, const char *seq_name);
+    int32_t bam_aux2i(const uint8_t * s);
+    void bam_init_header_hash(bam_header_t * header);
 }
 #endif
 

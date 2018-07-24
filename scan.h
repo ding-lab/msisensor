@@ -37,8 +37,8 @@
 #include "param.h"
 
 // Samtools header files
-#include "htslib/sam.h"
-#include "htslib/khash.h"
+#include "khash.h"
+#include "sam.h"
 
 #endif //_SCAN_H_
 
