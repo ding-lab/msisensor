@@ -1,22 +1,23 @@
 CXX=g++
 SAMTOOLS_ROOT=vendor/samtools-0.1.19
 
-CXXFLAGS=-O2 -fopenmp
-CXXFLAGS+=-I${SAMTOOLS_ROOT}
-CXXLDFLAGS=-lm -L${SAMTOOLS_ROOT} -lbam -lz -lpthread
+FLAGS=-O2 -fopenmp
+LFLAGS=-lm -L${SAMTOOLS_ROOT} -lbam -lz -lpthread
+IFLAGS=-I${SAMTOOLS_ROOT}
 SOURCE = cmds scan distribution refseq polyscan param utilities homo window bamreader sample chi somatic
 OBJS= $(patsubst %,%.o,$(SOURCE))
 
 %.o:%.cpp
-	    $(CXX) $(CXXFLAGS) -c $< -o $@
+	        $(CXX) $(CFLAGS) $(CXXFLAGS) $(FLAGS) $(IFLAGS) -c $< -o $@
 
 all: samtools msisensor
 
 samtools:
-	    $(MAKE) -C ${SAMTOOLS_ROOT}
+	        $(MAKE) -C ${SAMTOOLS_ROOT}
 
 msisensor: $(OBJS)
-	    $(CXX) $^ $(CXXFLAGS) $(CXXLDFLAGS) -o $@ 
+	        $(CXX) $^ $(CFLAGS) $(CXXFLAGS) $(FLAGS) $(LFLAGS) -o $@ 
 
 clean:
-	    rm -f *.o msisensor
+	        rm -f *.o msisensor
+			        $(MAKE) -C ${SAMTOOLS_ROOT} clean
