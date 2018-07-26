@@ -15,7 +15,7 @@ PROG=		samtools
 INCLUDES+=	-I.
 SUBDIRS=	. bcftools misc
 LIBPATH=
-LIBCURSES=	-lcurses # -lXCurses
+LIBCURSES=	-lncurses # -lXCurses
 
 .SUFFIXES:.c .o
 .PHONY: all lib
