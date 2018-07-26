@@ -1,7 +1,7 @@
 CC=			gcc
-CFLAGS=		-g -Wall -O2
+CFLAGS+=		-g -Wall -O2
 #LDFLAGS=		-Wl,-rpath,\$$ORIGIN/../lib
-DFLAGS=		-D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1
+DFLAGS+=		-D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1
 KNETFILE_O=	knetfile.o
 LOBJS=		bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o	\
 			bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o \
@@ -12,7 +12,7 @@ AOBJS=		bam_tview.o bam_plcmd.o sam_view.o \
 			cut_target.o phase.o bam2depth.o padding.o bedcov.o bamshuf.o \
 			bam_tview_curses.o bam_tview_html.o
 PROG=		samtools
-INCLUDES=	-I.
+INCLUDES+=	-I.
 SUBDIRS=	. bcftools misc
 LIBPATH=
 LIBCURSES=	-lcurses # -lXCurses
