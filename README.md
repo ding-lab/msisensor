@@ -32,9 +32,11 @@ conda install msisensor
 
 ## Build from source code
 Clone the msisensor master branch, and build the `msisensor` binary:
-    git clone https://github.com/ding-lab/msisensor.git
-    cd msisensor
-    make
+```
+git clone https://github.com/ding-lab/msisensor.git
+cd msisensor
+make
+```
 
 Now you can put the resulting binary where your `$PATH` can find it. If you have su permissions,
 then we recommend dumping it in the system directory for locally compiled packages:
