@@ -23,3 +23,4 @@ msisensor: $(OBJS)
 clean:
 	        rm -f *.o msisensor
 			        $(MAKE) -C ${SAMTOOLS_ROOT} clean
+
