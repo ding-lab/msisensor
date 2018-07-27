@@ -1,29 +1,26 @@
-CC=g++
+CXX=g++
+SAMTOOLS_ROOT=vendor/samtools-0.1.19
 
-FLAGS=-O2 -fopenmp
-CFLAGS=-O2 -fopenmp
 
-#FLAGS=-g -fopenmp
-#CFLAGS=-g -fopenmp
-
-#SAMTOOLS_ROOT=/home/scbniu/software/samtools-1.8/
-FLAGS+=-I${SAMTOOLS_ROOT}
-LFLAGS=-lm -L${SAMTOOLS_ROOT} -lbam -lz -lpthread
+CXXFLAGS+=    -O2 -fopenmp
+LDFLAGS+=    -L${SAMTOOLS_ROOT}
+LIBS+=    -lm -lbam -lz -lpthread
+INCLUDES+=    -I${SAMTOOLS_ROOT}
 SOURCE = cmds scan distribution refseq polyscan param utilities homo window bamreader sample chi somatic
 OBJS= $(patsubst %,%.o,$(SOURCE))
 
-all: check-samtools msisensor
-
 %.o:%.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	        $(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-check-samtools:
-    ifndef SAMTOOLS_ROOT
-        $(error SAMTOOLS_ROOT is undefined)
-    endif
+all: samtools msisensor
+
+samtools:
+	        $(MAKE) -C ${SAMTOOLS_ROOT}
 
 msisensor: $(OBJS)
-	$(CC) $^ $(CFLAGS) $(LFLAGS) -o $@ 
+	        $(CXX) $^ $(CXXFLAGS) $(LDFLAGS) $(LIBS) -o $@ 
+
 clean:
-	rm -f *.o msisensor
+	        rm -f *.o msisensor
+			        $(MAKE) -C ${SAMTOOLS_ROOT} clean
 

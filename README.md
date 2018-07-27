@@ -6,6 +6,42 @@ MSIsensor is a C++ program to detect replication slippage variants at microsatel
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
 
+Install
+-------
+You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
+
+    sudo apt-get install zlib1g-dev libncurses5-dev libncursesw5-dev
+
+If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
+
+    sudo yum install zlib-devel ncurses-devel ncurses
+
+## Using Pre-built
+- For linux
+  
+  - `binary/msisensor.linux`
+- For macos
+
+    you should `brew install gcc` and install openmp
+    - `binary/msisensor.macos`
+
+## Using bioconda
+```
+conda install msisensor
+```
+
+## Build from source code
+Clone the msisensor master branch, and build the `msisensor` binary:
+```
+git clone https://github.com/ding-lab/msisensor.git
+cd msisensor
+make
+```
+
+Now you can put the resulting binary where your `$PATH` can find it. If you have su permissions,
+then we recommend dumping it in the system directory for locally compiled packages:
+
+    sudo mv msisensor /usr/local/bin/
 
 Usage
 -----
@@ -56,44 +92,6 @@ msisensor msi [options]:
        -y   <int>      output microsatellite only, 0: no; 1: yes, default=0
 
        -h   help
-
-
-Install
--------
-
-You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
-
-    sudo apt-get install git libbam-dev zlib1g-dev
-
-If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
-
-    sudo yum install git samtools-devel zlib-devel
-
-The Makefile assumes you have samtools-0.1.19 source code in environment variable `$SAMTOOLS_ROOT`.
-If not, then download samtools-0.1.19 from [SourceForge](http://sourceforge.net/projects/samtools/files/samtools/0.1.19):
-
-    tar jxf samtools-0.1.19.tar.bz2
-    cd samtools-0.1.19
-    make
-    export SAMTOOLS_ROOT=$PWD
-
-Clone the msisensor master branch, and build the `msisensor` binary:
-
-    git clone https://github.com/ding-lab/msisensor.git
-    cd msisensor
-    make
-
-Now you can put the resulting binary where your `$PATH` can find it. If you have su permissions,
-then we recommend dumping it in the system directory for locally compiled packages:
-
-    sudo mv msisensor /usr/local/bin/
-
-Pre-built binaries for Linux x86_64 and Mac OS X are in this directory: `./binary`
-
-    msisensor_Linux_x86_64: for Linux x86_64
-    msisensor_Mac_OS_X    : for Mac OS X
-
-Note: We have also released a standalone version v0.4 for users who prefer to use htslib samtools like samtools-1.8.
 
 Example
 -------
@@ -195,4 +193,3 @@ Beifang Niu <bniu@sccas.cn>
 Kai Ye <kaiye@xjtu.edu.cn>
 Li Ding <lding@wustl.edu>
 Cyriac Kandoth <ckandoth@gmail.com>
-
