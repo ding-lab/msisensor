@@ -6,6 +6,8 @@ MSIsensor is a C++ program to detect replication slippage variants at microsatel
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
 
+Beifang Niu*, Kai Ye*, Qunyuan Zhang, Charles Lu, Mingchao Xie, Michael D. McLellan, Michael C. Wendl and Li Ding#.MSIsensor: microsatellite instability detection using paired tu-mor-normal sequence data. Bioinformatics 30, 1015–1016 (2014).
+
 Install
 -------
 You may already have these prerequisite packages. If not, and you're on Debian or Ubuntu:
