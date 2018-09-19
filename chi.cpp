@@ -20,6 +20,10 @@
 #include <vector>
 #include <algorithm>
 
+#include "param.h"
+
+extern Param paramd;
+
 /*
 double gamma(double N) {
     const long double SQRT2PI = 2.5066282746310005024157652848110452530069867406099383;
@@ -108,6 +112,29 @@ double get_chisqr_p(unsigned short * first, unsigned short * second) {
 double X2BetweenTwo(unsigned short * FirstOriginal, unsigned short * SecondOriginal, unsigned int dispots) {
     // default dispots = 100
     // delare
+    //
+    // coverage normalization ( in case tumor >> normal )
+    //
+    if (paramd.Normalization == 1) {
+        double sum_first = 0;
+        double sum_second = 0;
+        for (int i = 0; i < dispots; i++) {
+            sum_first += FirstOriginal[i];
+            sum_second += SecondOriginal[i];
+        }
+        if ((sum_first > sum_second) && (sum_second !=0)) {
+            for (int i = 0; i < dispots; i++) {
+                SecondOriginal[i] = SecondOriginal[i] * (sum_first/sum_second);
+            }
+        }
+        if ((sum_first <= sum_second) && (sum_first != 0)) {
+            for (int i = 0; i < dispots; i++) {
+                FirstOriginal[i] = FirstOriginal[i] * (sum_second/sum_first);
+            }
+        }
+    }
+    // normalization
+
     double *ExpFirst, *ExpSecond, *SumBoth;
 
     ExpFirst  = new double [dispots + 1];
