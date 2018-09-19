@@ -81,6 +81,7 @@ msisensor msi [options]:
        -f   <double>   FDR threshold for somatic sites detection, default=0.05
        -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default=1
        -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default=20
+       -z   <int>      coverage normalization for paired tumor and normal data, 0: no; 1: yes, default=0
        -r   <string>   choose one region, format: 1:10000000-20000000
        -l   <int>      minimal homopolymer size, default=5
        -p   <int>      minimal homopolymer size for distribution analysis, default=10
