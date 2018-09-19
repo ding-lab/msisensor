@@ -76,6 +76,7 @@ void DisUsage(void) {
         <<"       -f   <double>   FDR threshold for somatic sites detection, default="<<paramd.fdrThreshold<<"\n"
         <<"       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default="<<paramd.comentropyThreshold<<"\n"
         <<"       -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default="<<paramd.covCutoff<<"\n"
+        <<"       -z   <int>      coverage normalization for paired tumor and normal data, 0: no; 1: yes, default="<<paramd.Normalization<<"\n"
         <<"       -r   <string>   choose one region, format: 1:10000000-20000000\n"    
         <<"       -l   <int>      minimal homopolymer size, default="<<paramd.MininalHomoSize<<"\n"
         <<"       -p   <int>      minimal homopolymer size for distribution analysis, default="<<paramd.MininalHomoForDis<<"\n"
@@ -109,6 +110,7 @@ int dGetOptions(int rgc, char *rgv[]) {
             case 'f': paramd.fdrThreshold  = atof(rgv[++i]); break;
             case 'i': paramd.comentropyThreshold = atof(rgv[++i]); break;
             case 'c': paramd.covCutoff = atoi(rgv[++i]); break;
+            case 'z': paramd.Normalization = atoi(rgv[++i]); break;
             case 'l': paramd.MininalHomoSize = atoi(rgv[++i]); break;
             case 'p': paramd.MininalHomoForDis = atoi(rgv[++i]); break;
             case 'u': paramd.DisSpan = atoi(rgv[++i]); break;

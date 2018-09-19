@@ -75,6 +75,8 @@ public:
     int MaxHomoSize;
     int SpanSize;
     int DisSpan;
+    // coverage normalization
+    int Normalization;
     // Thread number
     unsigned int numberThreads;
     // statistic var
