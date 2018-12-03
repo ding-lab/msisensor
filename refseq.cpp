@@ -84,6 +84,7 @@ bool RefSeq::PouroutBuffer(std::ofstream &fout) {
         fout << homosBuffer[i].transfer << "\n";
     }
     homosBuffer.clear();
+    totalSites = 0;
 }
 
 // Load next chromosome
