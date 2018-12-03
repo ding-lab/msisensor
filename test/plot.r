@@ -17,6 +17,7 @@ if(nn == 2){
     #beeswarm(score~state, data=m, method='swarm', pch=16, ylim=c(0, 100), xlab='Sample group', ylab='MSI score(%)', main='MSI score', cex=0.8, las=0, do.plot=T, add=F, at=xs, col=cols[xs], spacing=0.8, xaxs='i', yaxs='i', lwd=.75)
 }else if(nn == 1){
     colnames(m)<-c('score')
+    cols <- colors<-colorRampPalette(brewer.pal(12, "Paired"))(1)
     xs<-nrow(1)
 
     pdf(file=args[2])
