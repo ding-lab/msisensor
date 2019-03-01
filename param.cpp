@@ -103,7 +103,7 @@ Param::Param()
     , covCutoff( 20 )
     , Normalization(0)
     , fdrThreshold( 0.05 ) 
-    , comentropyThreshold( 1 ) // for tumor only
+    , comentropyThreshold( 0.3 ) // for tumor only
 {
     inital_homo_phabet();
     initalphabet();
