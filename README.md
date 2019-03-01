@@ -5,7 +5,6 @@ MSIsensor is a C++ program to detect replication slippage variants at microsatel
 ![](https://github.com/ding-lab/msisensor/blob/master/test/tumor_only_vs_pair.jpg)
 
 MSIsensor_T: msisensor tumor only module.
-
 ![](https://github.com/ding-lab/msisensor/blob/master/test/msisensor-tumor-only.png)
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
