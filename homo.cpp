@@ -316,7 +316,8 @@ void HomoSite::DisTumorSomatic(Sample &sample) {
         withSufCov = false;
         comentropy = 0;
     }
-    if (comentropy >= paramd.comentropyThreshold) { 
+    //if (comentropy >= paramd.comentropyThreshold) {
+    if (withSufCov and comentropy >= paramd.comentropyThreshold) { 
         reportSomatic = true;
         sample.numberOfMsiDataPoints ++;
     }
@@ -416,6 +417,7 @@ double HomoSite::DistanceBetweenTwo( unsigned short * FirstOriginal, unsigned sh
 double HomoSite::Comentropy( unsigned short * tumorDis, unsigned int dispots ) {
     double sum = 0;
     double comentropy = 0.0;
+    double number = 0.0;
     for (int i = 0; i < dispots; i++){
         if (tumorDis[i] <3){
             tumorDis[i] = 0;
@@ -425,10 +427,12 @@ double HomoSite::Comentropy( unsigned short * tumorDis, unsigned int dispots ) {
     if ( sum != 0 ) {
         for( int j = 0; j < dispots; j++){
             if( tumorDis[j] != 0 ){
+                number += 1;
                 comentropy -= (tumorDis[j]/sum)*log(tumorDis[j]/sum);
             }
         }
     }
+    if ( number != 0 ) comentropy = comentropy/number;
     return comentropy;
 }
 
