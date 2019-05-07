@@ -298,8 +298,12 @@ void RefSeq::DoScan( int length,
 
             // return to head
             if (ifHit) {
-                p = p0 + k*hitLength;
-                i = i0 + k*hitLength;
+                //p = p0 + k*hitLength;
+                //i = i0 + k*hitLength;
+                // scan start from the previous unit to achieve 
+                // a more complete microsatellite
+                p = p0 + k*hitLength - (k-1);
+                i = i0 + k*hitLength - (k-1);
             } else {
                 p = p0 + 1;
                 i = i0 + 1;
