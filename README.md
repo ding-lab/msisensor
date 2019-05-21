@@ -52,7 +52,7 @@ then we recommend dumping it in the system directory for locally compiled packag
 Usage
 -----
 
-        Version 0.5
+        Version 0.6
         Usage:  msisensor <command> [options]
 
 Key commands:
