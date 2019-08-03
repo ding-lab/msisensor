@@ -23,13 +23,7 @@ If you are using Fedora, CentOS or RHEL, you'll need these packages instead:
     sudo yum install zlib-devel ncurses-devel ncurses
 
 ## Using Pre-built
-- For linux
-  
-  - `binary/msisensor.linux`
-- For macos
-
-    you should `brew install gcc` and install openmp
-    - `binary/msisensor.macos`
+- For Linux and OSX binaries, look for `msisensor.linux` and/or `msisensor.macos` in attachments to each release
 
 ## Using bioconda
 ```
@@ -52,7 +46,7 @@ then we recommend dumping it in the system directory for locally compiled packag
 Usage
 -----
 
-        Version 0.5
+        Version 0.6
         Usage:  msisensor <command> [options]
 
 Key commands:
