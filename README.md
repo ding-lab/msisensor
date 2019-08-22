@@ -1,12 +1,6 @@
 MSIsensor
 ===========
-MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor with version from 0.3. Given tumor only sequence data, it uses comentropy theory and figures out a comentropy value for a distribution per microsatellite. Our test results show that it's performance is comparable with paired tumor and normal sequence data input(figure below). And, We recommend to set different msi score cutoff values for different cancer types. (for example: TCGA UCEC, msi high: msi score >= 13%). We also provide the test results of TCGA and EGA data and illustrate the performance comparison between original tumor/normal paired module and tumor only module. (see AUC figures below)
-
-![](https://github.com/ding-lab/msisensor/blob/master/test/tumor_only_vs_pair.jpg)
-
-MSIsensor_T: msisensor tumor only module; MSIsensor: original tumor/normal paired module.
-
-![](https://github.com/ding-lab/msisensor/blob/master/test/msisensor-tumor-only.png)
+MSIsensor is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving MSI status from standard tumor-normal paired sequence data. Since there are many users complained that they don't have paired normal sequence data or related normal sequence data can be used to build a paired normal control, we released MSIsensor2. Our test results show that the performance of MSIsensor2 is comparable with paired tumor and normal sequence data input. In particular, the MSIsensor2 is 10 times faster than the MSIsensor. A typical WES data can be finished within 180 seconds. Please access the MSIsensor2 here: http://niulab.scgrid.cn/msisensor2/index.html . 
 
 If you used this tool for your work, please cite [PMID 24371154](https://www.ncbi.nlm.nih.gov/pubmed/24371154)
 
@@ -77,7 +71,6 @@ msisensor msi [options]:
 
        -e   <string>   bed file, optional
        -f   <double>   FDR threshold for somatic sites detection, default=0.05
-       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default=1
        -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default=20
        -z   <int>      coverage normalization for paired tumor and normal data, 0: no; 1: yes, default=0
        -r   <string>   choose one region, format: 1:10000000-20000000
@@ -102,13 +95,7 @@ Example
 
 2. MSI scoring:
 
-   for paired tumor and normal sequence data:
-
         msisensor msi -d microsatellites.list -n normal.bam -t tumor.bam -e bed.file -o output.prefix
-
-   for tumor only sequence data:
-
-        msisensor msi -d microsatellites.list -t tumor.bam -e bed.file -o output.tumor.prefix
 
    Note: normal and tumor bam index files are needed in the same directory as bam files
 
@@ -120,12 +107,6 @@ The list of microsatellites is output in "scan" step. The MSI scoring step produ
         output.prefix_dis_tab
         output.prefix_germline
         output.prefix_somatic
-
-for tumor only input, the MSI scoreing step produces 3 files: 
-
-        output.tumor.prefix
-        output.tumor.prefix_dis_tab
-        output.tumor.prefix_somatic
 
 1. microsatellites.list: microsatellite list output ( columns with *_binary means: binary conversion of DNA bases based on A=00, C=01, G=10, and T=11 )
 
