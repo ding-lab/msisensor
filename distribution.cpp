@@ -74,7 +74,7 @@ void DisUsage(void) {
 
         <<"       -e   <string>   bed file, optional\n"
         <<"       -f   <double>   FDR threshold for somatic sites detection, default="<<paramd.fdrThreshold<<"\n"
-        <<"       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default="<<paramd.comentropyThreshold<<"\n"
+        //<<"       -i   <double>   minimal comentropy threshold for somatic sites detection (just for tumor only data), default="<<paramd.comentropyThreshold<<"\n"
         <<"       -c   <int>      coverage threshold for msi analysis, WXS: 20; WGS: 15, default="<<paramd.covCutoff<<"\n"
         <<"       -z   <int>      coverage normalization for paired tumor and normal data, 0: no; 1: yes, default="<<paramd.Normalization<<"\n"
         <<"       -r   <string>   choose one region, format: 1:10000000-20000000\n"    
