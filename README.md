@@ -174,4 +174,3 @@ If you have any questions, please contact one or more of the following folks:
 Beifang Niu <bniu@sccas.cn>
 Kai Ye <kaiye@xjtu.edu.cn>
 Li Ding <lding@wustl.edu>
-Cyriac Kandoth <ckandoth@gmail.com>
