@@ -104,7 +104,7 @@ Output
 The list of microsatellites is output in "scan" step. The MSI scoring step produces 4 files:
 
         output.prefix
-        output.prefix_dis_tab
+        output.prefix_dis
         output.prefix_germline
         output.prefix_somatic
 
@@ -122,7 +122,7 @@ The list of microsatellites is output in "scan" step. The MSI scoring step produ
         Total_Number_of_Sites   Number_of_Somatic_Sites %
         640     75      11.72
 
-3. output.prefix_dis_tab: read count distribution (N: normal; T: tumor)
+3. output.prefix_dis: read count distribution (N: normal; T: tumor)
 
         1       16248728        ACCTC   11      T       AAAGG   N       0       0       0       0       1       38      0       0       0       0       0       0       0
         1       16248728        ACCTC   11      T       AAAGG   T       0       0       0       0       17      22      1       0       0       0       0       0       0
