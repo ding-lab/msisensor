@@ -9,7 +9,7 @@
 **MSIsensor** is a C++ program to detect replication slippage variants at microsatellite regions, and differentiate them as somatic or germline. Given paired tumor and normal sequence data, it builds a distribution for expected (normal) and observed (tumor) lengths of repeated sequence per microsatellite, and compares them using Pearson's Chi-Squared Test. Comprehensive testing indicates MSIsensor is an efficient and effective tool for deriving microsatellite instability (MSI) status from standard tumor-normal paired sequence data. MSIsensor is publiched in [*Bioinformatics*](https://www.ncbi.nlm.nih.gov/pubmed/24371154). Please click [here](https://github.com/ding-lab/msisensor/blob/master/README_msisensor.md) to see more details about MSIsensor. If you have any questions about MSIsensor, please contact one or more of the following folks:
 Beifang Niu (<bniu@sccas.cn>), Kai Ye (<kaiye@xjtu.edu.cn>) or Li Ding (<lding@wustl.edu>).
 
-If you use these tools for your work, please cite the following papers:
+If you use these tools for your work, please cite the following papers:   
 [1] Niu, B. et al. MSIsensor: microsatellite instability detection using paired tumor-normal sequence data. Bioinformatics 30, 1015-1016, [doi:10.1093/bioinformatics/btt755](https://www.ncbi.nlm.nih.gov/pubmed/24371154) (2014).   
 [2] Jia, P. et al. MSIsensor-pro: Fast, Accurate, and Matched-normal-sample-free Detection of Microsatellite Instability. Genomics, Proteomics & Bioinformatics, [doi:https://doi.org/10.1016/j.gpb.2020.02.001](https://doi.org/10.1016/j.gpb.2020.02.001) (2020).
 
